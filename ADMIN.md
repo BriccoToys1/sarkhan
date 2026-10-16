@@ -18,3 +18,13 @@
 ## После мутаций
 
 Кэш витрины сбрасывается через `revalidateTag` (`products`, `collections`, `oracle`, `gallery`, `journal`, `venues`).
+
+## Vercel / Neon
+
+На билде `migrate deploy` идёт через `scripts/migrate-deploy.mjs` (unpooled URL + retry при P1002).
+
+В Environment Variables должны быть:
+- `DATABASE_URL` — pooled (runtime)
+- `DATABASE_URL_UNPOOLED` или `POSTGRES_URL_NON_POOLING` — **direct**, без `-pooler` в hostname
+
+Без unpooled URL миграции на Neon часто падают с `P1002` (advisory lock timeout).
