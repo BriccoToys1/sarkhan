@@ -19,12 +19,15 @@
 
 Кэш витрины сбрасывается через `revalidateTag` (`products`, `collections`, `oracle`, `gallery`, `journal`, `venues`).
 
-## Vercel / Neon
+## Vercel Postgres
 
-На билде `migrate deploy` идёт через `scripts/migrate-deploy.mjs` (unpooled URL + retry при P1002).
+БД создаётся в Vercel → Storage (Marketplace Neon). В Neon Dashboard заходить не нужно — всё через Vercel.
 
-В Environment Variables должны быть:
-- `DATABASE_URL` — pooled (runtime)
-- `DATABASE_URL_UNPOOLED` или `POSTGRES_URL_NON_POOLING` — **direct**, без `-pooler` в hostname
+Уже подключено: store **`sarkhan-db`** → env `DATABASE_URL` + `DATABASE_URL_UNPOOLED`.
 
-Без unpooled URL миграции на Neon часто падают с `P1002` (advisory lock timeout).
+На билде `scripts/migrate-deploy.mjs`:
+- берёт unpooled URL;
+- **пропускает** migrate, если все миграции уже в `_prisma_migrations` (нет гонок за advisory lock);
+- иначе чистит зависший lock и ретраит.
+
+Логин админки: env `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
