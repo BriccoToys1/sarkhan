@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" width="800" height="1200">
+<defs>
+<linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="440" y2="480" spreadMethod="reflect">
+<stop offset="0" stop-color="#6e532f"/><stop offset=".3" stop-color="#c5a880"/><stop offset=".52" stop-color="#f3e2bb"/><stop offset=".74" stop-color="#b08d5c"/><stop offset="1" stop-color="#5e4526"/>
+</linearGradient>
+<linearGradient id="bronze" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="240" y2="240" spreadMethod="reflect">
+<stop offset="0" stop-color="#4a3418"/><stop offset=".5" stop-color="#b98a4e"/><stop offset="1" stop-color="#3b2812"/>
+</linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#c5a880" stop-opacity=".32"/><stop offset=".55" stop-color="#c5a880" stop-opacity=".08"/><stop offset="1" stop-color="#c5a880" stop-opacity="0"/></radialGradient>
+<radialGradient id="crimsonGlow"><stop offset="0" stop-color="#9b1c1c" stop-opacity=".45"/><stop offset="1" stop-color="#801818" stop-opacity="0"/></radialGradient>
+<radialGradient id="vig" cx=".5" cy=".5" r=".72"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".8"/></radialGradient>
+<radialGradient id="flame" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fffaf0"/><stop offset=".35" stop-color="#f7d58b"/><stop offset=".7" stop-color="#d9822b" stop-opacity=".85"/><stop offset="1" stop-color="#8a2b0f" stop-opacity="0"/></radialGradient>
+<radialGradient id="flameGlow"><stop offset="0" stop-color="#f3c77a" stop-opacity=".55"/><stop offset=".4" stop-color="#c5803a" stop-opacity=".18"/><stop offset="1" stop-color="#c5803a" stop-opacity="0"/></radialGradient>
+<pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="7" stroke="#c5a880" stroke-width=".6" stroke-opacity=".08"/></pattern>
+<pattern id="inkHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)"><line x1="0" y1="0" x2="0" y2="5" stroke="#1d1915" stroke-width=".7" stroke-opacity=".55"/></pattern>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .82  0 0 0 0 .72  0 0 0 0 .56  0 0 0 .075 0"/></filter>
+<filter id="paint" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".012 .02" numOctaves="4" seed="7"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 .08  0 0 0 0 .06  0 0 0 .55 0"/></filter>
+<filter id="leaf" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .95  0 0 0 0 .82  0 0 0 0 .55  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+<filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="40"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<rect width="800" height="1200" fill="#e9dfca"/>
+<rect width="800" height="1200" fill="#e9dfca"/>
+<rect width="800" height="1200" filter="url(#paint)" opacity=".18"/>
+<rect width="800" height="1200" fill="url(#inkHatch)" opacity=".35"/>
+<g fill="none" stroke="#1d1915" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M 112 942 L 112 574.8 Q 112 258 400 258 Q 688 258 688 574.8 L 688 942" stroke-width="2"/><path d="M 139 942 L 139 588.3 Q 139 301.2 400 301.2 Q 661 301.2 661 588.3 L 661 942" stroke-width="0.8"/><g transform="translate(220 643.2) scale(0.72) translate(-220 -643.2)"><path d="M 156.5 605.4 L 144.4 525.3 L 192.8 579.7 Q 220 567.6 247.2 579.7 L 295.6 525.3 L 283.5 605.4 Q 295.6 650.8 259.3 688.6 L 238.1 736.9 Q 220 752.1 201.9 736.9 L 180.7 688.6 Q 144.4 650.8 156.5 605.4 Z" fill="#0b0b0c"/>
+<path d="M 180.7 631.1 L 204.9 640.2 L 183.7 649.2 Z M 259.3 631.1 L 235.1 640.2 L 256.3 649.2 Z" fill="#b8241f" stroke-width="1"/>
+<path d="M 207.9 718.8 L 220 730.9 L 232.1 718.8 Z" fill="url(#gold)" stroke="none"/>
+<path d="M 220 582.7 L 220 688.6 M 171.6 552.5 L 180.7 582.7 M 268.4 552.5 L 259.3 582.7" stroke-width="1"/></g><g transform="translate(580 643.2) scale(0.72) translate(-580 -643.2)"><path d="M 516.5 605.4 L 504.4 525.3 L 552.8 579.7 Q 580 567.6 607.2 579.7 L 655.6 525.3 L 643.5 605.4 Q 655.6 650.8 619.3 688.6 L 598.1 736.9 Q 580 752.1 561.9 736.9 L 540.7 688.6 Q 504.4 650.8 516.5 605.4 Z" fill="#0b0b0c"/>
+<path d="M 540.7 631.1 L 564.9 640.2 L 543.7 649.2 Z M 619.3 631.1 L 595.1 640.2 L 616.3 649.2 Z" fill="#b8241f" stroke-width="1"/>
+<path d="M 567.9 718.8 L 580 730.9 L 592.1 718.8 Z" fill="url(#gold)" stroke="none"/>
+<path d="M 580 582.7 L 580 688.6 M 531.6 552.5 L 540.7 582.7 M 628.4 552.5 L 619.3 582.7" stroke-width="1"/></g><g transform="translate(400 582) scale(1) translate(-400 -582)"><path d="M 336.5 544.2 L 324.4 464.1 L 372.8 518.5 Q 400 506.4 427.2 518.5 L 475.6 464.1 L 463.5 544.2 Q 475.6 589.6 439.3 627.4 L 418.1 675.7 Q 400 690.9 381.9 675.7 L 360.7 627.4 Q 324.4 589.6 336.5 544.2 Z" fill="#0b0b0c"/>
+<path d="M 360.7 569.9 L 384.9 579 L 363.7 588 Z M 439.3 569.9 L 415.1 579 L 436.3 588 Z" fill="#b8241f" stroke-width="1"/>
+<path d="M 387.9 657.6 L 400 669.7 L 412.1 657.6 Z" fill="url(#gold)" stroke="none"/>
+<path d="M 400 521.5 L 400 627.4 M 351.6 491.3 L 360.7 521.5 M 448.4 491.3 L 439.3 521.5" stroke-width="1"/></g><path d="M 90.4 931.2 Q 94 892.3 112 866.4 Q 130 892.3 133.6 931.2" stroke-width="1.4"/><path d="M 148 931.2 Q 151.6 885.8 169.6 855.6 Q 187.6 885.8 191.2 931.2" stroke-width="1.4"/><path d="M 205.6 931.2 Q 209.2 879.4 227.2 844.8 Q 245.2 879.4 248.8 931.2" stroke-width="1.4"/><path d="M 263.2 931.2 Q 266.8 872.9 284.8 834 Q 302.8 872.9 306.4 931.2" stroke-width="1.4"/><path d="M 320.8 931.2 Q 324.4 866.4 342.4 823.2 Q 360.4 866.4 364 931.2" stroke-width="1.4"/><path d="M 378.4 931.2 Q 382 859.9 400 812.4 Q 418 859.9 421.6 931.2" stroke-width="1.4"/><path d="M 436 931.2 Q 439.6 866.4 457.6 823.2 Q 475.6 866.4 479.2 931.2" stroke-width="1.4"/><path d="M 493.6 931.2 Q 497.2 872.9 515.2 834 Q 533.2 872.9 536.8 931.2" stroke-width="1.4"/><path d="M 551.2 931.2 Q 554.8 879.4 572.8 844.8 Q 590.8 879.4 594.4 931.2" stroke-width="1.4"/><path d="M 608.8 931.2 Q 612.4 885.8 630.4 855.6 Q 648.4 885.8 652 931.2" stroke-width="1.4"/><path d="M 666.4 931.2 Q 670 892.3 688 866.4 Q 706 892.3 709.6 931.2" stroke-width="1.4"/></g>
+<rect width="800" height="1200" fill="url(#vig)"/>
+<rect width="800" height="1200" filter="url(#grain)" opacity="0.5"/>
+</svg>

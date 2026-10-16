@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" width="800" height="1200">
+<defs>
+<linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="440" y2="480" spreadMethod="reflect">
+<stop offset="0" stop-color="#6e532f"/><stop offset=".3" stop-color="#c5a880"/><stop offset=".52" stop-color="#f3e2bb"/><stop offset=".74" stop-color="#b08d5c"/><stop offset="1" stop-color="#5e4526"/>
+</linearGradient>
+<linearGradient id="bronze" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="240" y2="240" spreadMethod="reflect">
+<stop offset="0" stop-color="#4a3418"/><stop offset=".5" stop-color="#b98a4e"/><stop offset="1" stop-color="#3b2812"/>
+</linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#c5a880" stop-opacity=".32"/><stop offset=".55" stop-color="#c5a880" stop-opacity=".08"/><stop offset="1" stop-color="#c5a880" stop-opacity="0"/></radialGradient>
+<radialGradient id="crimsonGlow"><stop offset="0" stop-color="#9b1c1c" stop-opacity=".45"/><stop offset="1" stop-color="#801818" stop-opacity="0"/></radialGradient>
+<radialGradient id="vig" cx=".5" cy=".5" r=".72"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".8"/></radialGradient>
+<radialGradient id="flame" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fffaf0"/><stop offset=".35" stop-color="#f7d58b"/><stop offset=".7" stop-color="#d9822b" stop-opacity=".85"/><stop offset="1" stop-color="#8a2b0f" stop-opacity="0"/></radialGradient>
+<radialGradient id="flameGlow"><stop offset="0" stop-color="#f3c77a" stop-opacity=".55"/><stop offset=".4" stop-color="#c5803a" stop-opacity=".18"/><stop offset="1" stop-color="#c5803a" stop-opacity="0"/></radialGradient>
+<pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="7" stroke="#c5a880" stroke-width=".6" stroke-opacity=".08"/></pattern>
+<pattern id="inkHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)"><line x1="0" y1="0" x2="0" y2="5" stroke="#1d1915" stroke-width=".7" stroke-opacity=".55"/></pattern>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .82  0 0 0 0 .72  0 0 0 0 .56  0 0 0 .075 0"/></filter>
+<filter id="paint" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".012 .02" numOctaves="4" seed="7"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 .08  0 0 0 0 .06  0 0 0 .55 0"/></filter>
+<filter id="leaf" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .95  0 0 0 0 .82  0 0 0 0 .55  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+<filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="40"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8"/></filter>
+<linearGradient id="boxFront" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a181d"/><stop offset=".6" stop-color="#0f0e11"/><stop offset="1" stop-color="#09090a"/></linearGradient>
+</defs>
+<rect width="800" height="1200" fill="#0b0b0c"/>
+<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#10171a"/><stop offset="1" stop-color="#0b0b0c"/></linearGradient>
+<linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141215"/><stop offset="1" stop-color="#060606"/></linearGradient>
+<radialGradient id="spot" cx=".5" cy="0" r=".9"><stop offset="0" stop-color="#e9d6ae" stop-opacity=".2"/><stop offset=".6" stop-color="#c5a880" stop-opacity=".05"/><stop offset="1" stop-color="#c5a880" stop-opacity="0"/></radialGradient></defs>
+<rect width="800" height="860" fill="url(#wall)"/>
+<rect y="860" width="800" height="340" fill="url(#floor)"/>
+<rect width="800" height="1200" fill="url(#spot)"/>
+<line x1="0" y1="860" x2="800" y2="860" stroke="#c5a880" stroke-opacity=".08"/>
+<ellipse cx="430" cy="900" rx="270" ry="30" fill="#000" opacity="0.75" filter="url(#soft)"/>
+<polygon points="230,300 570,300 612,262 272,262" fill="#1e1c21"/>
+<polygon points="570,300 612,262 612,842 570,880" fill="#08080a"/>
+<rect x="230" y="300" width="340" height="580" fill="url(#boxFront)"/>
+<g fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><polygon points="230,300 570,300 612,262 272,262" stroke-width=".8" stroke-opacity=".5"/>
+<rect x="246" y="316" width="308" height="548" stroke-width="1.2"/>
+<rect x="254" y="324" width="292" height="532" stroke-width=".5"/>
+<path d="M 254 364 L 254 324 L 294 324" stroke-width="1.1"/>
+<path d="M 264 334 Q 282 326 292 336 M 264 334 Q 256 352 266 362" stroke-width="0.8800000000000001"/>
+<circle cx="264" cy="334" r="2.8" fill="url(#gold)" stroke="none"/><path d="M 546 364 L 546 324 L 506 324" stroke-width="1.1"/>
+<path d="M 536 334 Q 518 326 508 336 M 536 334 Q 544 352 534 362" stroke-width="0.8800000000000001"/>
+<circle cx="536" cy="334" r="2.8" fill="url(#gold)" stroke="none"/><path d="M 254 816 L 254 856 L 294 856" stroke-width="1.1"/>
+<path d="M 264 846 Q 282 854 292 844 M 264 846 Q 256 828 266 818" stroke-width="0.8800000000000001"/>
+<circle cx="264" cy="846" r="2.8" fill="url(#gold)" stroke="none"/><path d="M 546 816 L 546 856 L 506 856" stroke-width="1.1"/>
+<path d="M 536 846 Q 518 854 508 844 M 536 846 Q 544 828 534 818" stroke-width="0.8800000000000001"/>
+<circle cx="536" cy="846" r="2.8" fill="url(#gold)" stroke="none"/>
+<circle cx="400" cy="540" r="129.8" fill="url(#glow)" stroke="none"/>
+<circle cx="400" cy="534.1" r="42.5" stroke-width="1.4" /><circle cx="400" cy="534.1" r="34.8" stroke-width="0.7" /><line x1="400" y1="486.5" x2="400" y2="459.8" stroke-width="1.4"/><path d="M 405.2 486.8 Q 412 473.7 413.3 488.4" stroke-width="0.9799999999999999"/><line x1="418.2" y1="490.1" x2="428.4" y2="465.4" stroke-width="1.4"/><path d="M 422.9 492.4 Q 434.2 482.9 429.8 497" stroke-width="0.9799999999999999"/><line x1="433.6" y1="500.5" x2="452.6" y2="481.5" stroke-width="1.4"/><path d="M 437.1 504.3 Q 451.2 499.9 441.7 511.2" stroke-width="0.9799999999999999"/><line x1="444" y1="515.9" x2="468.7" y2="505.7" stroke-width="1.4"/><path d="M 445.7 520.8 Q 460.4 522.1 447.3 528.9" stroke-width="0.9799999999999999"/><line x1="447.6" y1="534.1" x2="474.3" y2="534.1" stroke-width="1.4"/><path d="M 447.3 539.3 Q 460.4 546.1 445.7 547.4" stroke-width="0.9799999999999999"/><line x1="444" y1="552.3" x2="468.7" y2="562.5" stroke-width="1.4"/><path d="M 441.7 557 Q 451.2 568.3 437.1 563.9" stroke-width="0.9799999999999999"/><line x1="433.6" y1="567.7" x2="452.6" y2="586.7" stroke-width="1.4"/><path d="M 429.8 571.2 Q 434.2 585.3 422.9 575.8" stroke-width="0.9799999999999999"/><line x1="418.2" y1="578.1" x2="428.4" y2="602.8" stroke-width="1.4"/><path d="M 413.3 579.8 Q 412 594.5 405.2 581.4" stroke-width="0.9799999999999999"/><line x1="400" y1="581.7" x2="400" y2="608.4" stroke-width="1.4"/><path d="M 394.8 581.4 Q 388 594.5 386.7 579.8" stroke-width="0.9799999999999999"/><line x1="381.8" y1="578.1" x2="371.6" y2="602.8" stroke-width="1.4"/><path d="M 377.1 575.8 Q 365.8 585.3 370.2 571.2" stroke-width="0.9799999999999999"/><line x1="366.4" y1="567.7" x2="347.4" y2="586.7" stroke-width="1.4"/><path d="M 362.9 563.9 Q 348.8 568.3 358.3 557" stroke-width="0.9799999999999999"/><line x1="356" y1="552.3" x2="331.3" y2="562.5" stroke-width="1.4"/><path d="M 354.3 547.4 Q 339.6 546.1 352.7 539.3" stroke-width="0.9799999999999999"/><line x1="352.4" y1="534.1" x2="325.7" y2="534.1" stroke-width="1.4"/><path d="M 352.7 528.9 Q 339.6 522.1 354.3 520.8" stroke-width="0.9799999999999999"/><line x1="356" y1="515.9" x2="331.3" y2="505.7" stroke-width="1.4"/><path d="M 358.3 511.2 Q 348.8 499.9 362.9 504.3" stroke-width="0.9799999999999999"/><line x1="366.4" y1="500.5" x2="347.4" y2="481.5" stroke-width="1.4"/><path d="M 370.2 497 Q 365.8 482.9 377.1 492.4" stroke-width="0.9799999999999999"/><line x1="381.8" y1="490.1" x2="371.6" y2="465.4" stroke-width="1.4"/><path d="M 386.7 488.4 Q 388 473.7 394.8 486.8" stroke-width="0.9799999999999999"/>
+<polygon points="400,469.2 463.4,578.9 336.6,578.9" stroke-width="2.6"/>
+<path d="M 376.4 551.8 Q 400 533.4 423.6 551.8 Q 400 570.2 376.4 551.8 Z" stroke-width="1.6"/><circle cx="400" cy="551.8" r="8" stroke-width="1.6" /><circle cx="400" cy="551.8" r="3.1" fill="url(#gold)" stroke="none"/>
+<path transform="rotate(0 308 457.4)" d="M 308 440.9 A 16.5 16.5 0 1 0 308 473.9 A 8.3 16.5 0 1 1 308 440.9 Z" stroke-width="1.6"/>
+<circle cx="492" cy="457.4" r="14.2" stroke-width="1.6" /><circle cx="492" cy="457.4" r="3.5" fill="url(#gold)" stroke="none"/>
+<circle cx="418.4" cy="435.4" r="6.8" stroke-width="1" /><circle cx="418.4" cy="435.4" r="1.5" fill="url(#gold)" stroke="none"/><path transform="rotate(180 493.3 489.2)" d="M 493.3 481 A 8.2 8.2 0 1 0 493.3 497.4 A 4.1 8.2 0 1 1 493.3 481 Z" stroke-width="1"/><circle cx="497.9" cy="579.9" r="5.4" stroke-width="1" /><path d="M 493.1 571.1 Q 497.9 577.2 502.7 571.1 M 497.9 585.4 V 592.9 M 494.5 589.1 H 501.3" stroke-width="1"/><circle cx="428.8" cy="639.5" r="5.8" stroke-width="1" /><path d="M 428.8 645.3 V 653.1 M 425.1 649.3 H 432.5" stroke-width="1"/><circle cx="336.3" cy="627.9" r="5.8" stroke-width="1" /><path d="M 340.4 623.8 L 345.8 618.4 M 341.7 618.4 H 345.8 V 622.5" stroke-width="1"/><path d="M 287.1 539.2 Q 293.9 535.8 293.9 542.6 Q 293.9 547.3 287.1 548 H 301.4 M 298 537.1 V 554.1" stroke-width="1"/><path d="M 326.3 450.9 V 463.1 M 322.9 454.3 H 329.7 M 326.3 459 Q 336.5 456.3 333.8 464.5 Q 331.7 468.6 335.1 469.9" stroke-width="1"/>
+<line x1="290" y1="730" x2="510" y2="730" stroke-width=".8"/></g>
+<text x="400" y="770" text-anchor="middle" font-family="Cinzel, 'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-size="21" font-weight="600" font-style="normal" letter-spacing="4" fill="url(#gold)" stroke="none">HERMETIC LIGHT</text>
+<text x="400" y="800" text-anchor="middle" font-family="Cinzel, 'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-size="13" font-weight="400" font-style="normal" letter-spacing="5" fill="url(#gold)" stroke="none">ORACLE · 44 CARDS</text>
+<text x="400" y="842" text-anchor="middle" font-family="Cinzel, 'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-size="10" font-weight="400" font-style="normal" letter-spacing="6" fill="url(#gold)" stroke="none">SARKHAN GRIM</text>
+<line x1="230" y1="300" x2="230" y2="880" stroke="#f3e2bb" stroke-opacity=".25"/>
+<rect width="800" height="1200" fill="url(#vig)"/>
+<rect width="800" height="1200" filter="url(#grain)" opacity="0.9"/>
+</svg>

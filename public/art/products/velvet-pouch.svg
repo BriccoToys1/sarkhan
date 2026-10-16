@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" width="800" height="1200">
+<defs>
+<linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="440" y2="480" spreadMethod="reflect">
+<stop offset="0" stop-color="#6e532f"/><stop offset=".3" stop-color="#c5a880"/><stop offset=".52" stop-color="#f3e2bb"/><stop offset=".74" stop-color="#b08d5c"/><stop offset="1" stop-color="#5e4526"/>
+</linearGradient>
+<linearGradient id="bronze" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="240" y2="240" spreadMethod="reflect">
+<stop offset="0" stop-color="#4a3418"/><stop offset=".5" stop-color="#b98a4e"/><stop offset="1" stop-color="#3b2812"/>
+</linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#c5a880" stop-opacity=".32"/><stop offset=".55" stop-color="#c5a880" stop-opacity=".08"/><stop offset="1" stop-color="#c5a880" stop-opacity="0"/></radialGradient>
+<radialGradient id="crimsonGlow"><stop offset="0" stop-color="#9b1c1c" stop-opacity=".45"/><stop offset="1" stop-color="#801818" stop-opacity="0"/></radialGradient>
+<radialGradient id="vig" cx=".5" cy=".5" r=".72"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".8"/></radialGradient>
+<radialGradient id="flame" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fffaf0"/><stop offset=".35" stop-color="#f7d58b"/><stop offset=".7" stop-color="#d9822b" stop-opacity=".85"/><stop offset="1" stop-color="#8a2b0f" stop-opacity="0"/></radialGradient>
+<radialGradient id="flameGlow"><stop offset="0" stop-color="#f3c77a" stop-opacity=".55"/><stop offset=".4" stop-color="#c5803a" stop-opacity=".18"/><stop offset="1" stop-color="#c5803a" stop-opacity="0"/></radialGradient>
+<pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="7" stroke="#c5a880" stroke-width=".6" stroke-opacity=".08"/></pattern>
+<pattern id="inkHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)"><line x1="0" y1="0" x2="0" y2="5" stroke="#1d1915" stroke-width=".7" stroke-opacity=".55"/></pattern>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .82  0 0 0 0 .72  0 0 0 0 .56  0 0 0 .075 0"/></filter>
+<filter id="paint" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".012 .02" numOctaves="4" seed="7"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 .08  0 0 0 0 .06  0 0 0 .55 0"/></filter>
+<filter id="leaf" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .95  0 0 0 0 .82  0 0 0 0 .55  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+<filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="40"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8"/></filter>
+<radialGradient id="pouch" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#3b2547"/><stop offset=".6" stop-color="#1f1328"/><stop offset="1" stop-color="#0e0812"/></radialGradient>
+</defs>
+<rect width="800" height="1200" fill="#0b0b0c"/>
+<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#18141b"/><stop offset="1" stop-color="#0b0b0c"/></linearGradient>
+<linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141215"/><stop offset="1" stop-color="#060606"/></linearGradient>
+<radialGradient id="spot" cx=".5" cy="0" r=".9"><stop offset="0" stop-color="#e9d6ae" stop-opacity=".2"/><stop offset=".6" stop-color="#c5a880" stop-opacity=".05"/><stop offset="1" stop-color="#c5a880" stop-opacity="0"/></radialGradient></defs>
+<rect width="800" height="905" fill="url(#wall)"/>
+<rect y="905" width="800" height="295" fill="url(#floor)"/>
+<rect width="800" height="1200" fill="url(#spot)"/>
+<line x1="0" y1="905" x2="800" y2="905" stroke="#c5a880" stroke-opacity=".08"/>
+<ellipse cx="400" cy="915" rx="230" ry="28" fill="#000" opacity="0.75" filter="url(#soft)"/>
+<path d="M 300 560 C 230 690 230 870 330 905 C 380 922 420 922 470 905 C 570 870 570 690 500 560 Z" fill="url(#pouch)"/>
+<path d="M 300 560 C 290 520 320 480 345 500 C 360 470 385 470 400 495 C 415 470 440 470 455 500 C 480 480 510 520 500 560 Z" fill="#2a1a33"/>
+<path d="M 300 560 C 230 690 230 870 330 905 C 380 922 420 922 470 905 C 570 870 570 690 500 560 Z" filter="url(#paint)" opacity=".5"/>
+<g fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M 296 566 Q 400 590 504 566" stroke-width="5"/>
+<path d="M 470 576 q 30 40 22 120 M 486 572 q 40 50 34 130" stroke-width="2.4"/>
+<path transform="rotate(0 400 720)" d="M 400 650 A 70 70 0 1 0 400 790 A 38.5 70 0 1 1 400 650 Z" stroke-width="2" fill="url(#gold)" fill-opacity=".18"/>
+<polygon points="452,676 453.9,685.4 461.9,680.1 456.6,688.1 466,690 456.6,691.9 461.9,699.9 453.9,694.6 452,704 450.1,694.6 442.1,699.9 447.4,691.9 438,690 447.4,688.1 442.1,680.1 450.1,685.4" stroke-width="1" fill="url(#gold)"/>
+<polygon points="468,752 469.1,757.2 473.7,754.3 470.8,758.9 476,760 470.8,761.1 473.7,765.7 469.1,762.8 468,768 466.9,762.8 462.3,765.7 465.2,761.1 460,760 465.2,758.9 462.3,754.3 466.9,757.2" stroke-width="1" fill="url(#gold)"/></g>
+<path d="M 488 700 l -10 50 h 28 Z M 515 706 l -10 50 h 28 Z" fill="url(#gold)"/>
+<rect width="800" height="1200" fill="url(#vig)"/>
+<rect width="800" height="1200" filter="url(#grain)" opacity="0.9"/>
+</svg>

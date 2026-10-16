@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" width="800" height="1200">
+<defs>
+<linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="440" y2="480" spreadMethod="reflect">
+<stop offset="0" stop-color="#6e532f"/><stop offset=".3" stop-color="#c5a880"/><stop offset=".52" stop-color="#f3e2bb"/><stop offset=".74" stop-color="#b08d5c"/><stop offset="1" stop-color="#5e4526"/>
+</linearGradient>
+<linearGradient id="bronze" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="240" y2="240" spreadMethod="reflect">
+<stop offset="0" stop-color="#4a3418"/><stop offset=".5" stop-color="#b98a4e"/><stop offset="1" stop-color="#3b2812"/>
+</linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#c5a880" stop-opacity=".32"/><stop offset=".55" stop-color="#c5a880" stop-opacity=".08"/><stop offset="1" stop-color="#c5a880" stop-opacity="0"/></radialGradient>
+<radialGradient id="crimsonGlow"><stop offset="0" stop-color="#9b1c1c" stop-opacity=".45"/><stop offset="1" stop-color="#801818" stop-opacity="0"/></radialGradient>
+<radialGradient id="vig" cx=".5" cy=".5" r=".72"><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".8"/></radialGradient>
+<radialGradient id="flame" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fffaf0"/><stop offset=".35" stop-color="#f7d58b"/><stop offset=".7" stop-color="#d9822b" stop-opacity=".85"/><stop offset="1" stop-color="#8a2b0f" stop-opacity="0"/></radialGradient>
+<radialGradient id="flameGlow"><stop offset="0" stop-color="#f3c77a" stop-opacity=".55"/><stop offset=".4" stop-color="#c5803a" stop-opacity=".18"/><stop offset="1" stop-color="#c5803a" stop-opacity="0"/></radialGradient>
+<pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="7" stroke="#c5a880" stroke-width=".6" stroke-opacity=".08"/></pattern>
+<pattern id="inkHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)"><line x1="0" y1="0" x2="0" y2="5" stroke="#1d1915" stroke-width=".7" stroke-opacity=".55"/></pattern>
+<filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .82  0 0 0 0 .72  0 0 0 0 .56  0 0 0 .075 0"/></filter>
+<filter id="paint" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".012 .02" numOctaves="4" seed="7"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 .08  0 0 0 0 .06  0 0 0 .55 0"/></filter>
+<filter id="leaf" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="3"/><feColorMatrix values="0 0 0 0 .95  0 0 0 0 .82  0 0 0 0 .55  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+<filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="40"/></filter>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<rect width="800" height="1200" fill="#0b0b0c"/>
+<defs><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#19171a"/><stop offset="1" stop-color="#0b0b0c"/></linearGradient>
+<linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141215"/><stop offset="1" stop-color="#060606"/></linearGradient>
+<radialGradient id="spot" cx=".5" cy="0" r=".9"><stop offset="0" stop-color="#e9d6ae" stop-opacity=".2"/><stop offset=".6" stop-color="#c5a880" stop-opacity=".05"/><stop offset="1" stop-color="#c5a880" stop-opacity="0"/></radialGradient></defs>
+<rect width="800" height="1000" fill="url(#wall)"/>
+<rect y="1000" width="800" height="200" fill="url(#floor)"/>
+<rect width="800" height="1200" fill="url(#spot)"/>
+<line x1="0" y1="1000" x2="800" y2="1000" stroke="#c5a880" stroke-opacity=".08"/>
+<rect x="180" y="218" width="470" height="665" fill="#000" opacity=".6" filter="url(#soft)"/>
+<rect x="165" y="200" width="470" height="665" fill="#efe7d7"/>
+<rect x="165" y="200" width="470" height="665" filter="url(#paint)" opacity=".12"/>
+<rect x="215" y="250" width="370" height="480" fill="#e6dbc5" stroke="#cbbfa6" stroke-width="2"/>
+<line x1="217" y1="252" x2="583" y2="252" stroke="#fbf6ea" stroke-width="1.4"/>
+<path d="M 240 730 V 400 A 160 160 0 0 1 560 400 V 730 Z" fill="url(#inkHatch)" opacity=".55"/>
+<g fill="none" stroke="#1d1915" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="400" cy="500" r="150" fill="url(#glow)" stroke="none"/>
+<circle cx="400" cy="500" r="123" stroke-width="16" stroke-dasharray="7.4 3.7" stroke-opacity=".9"/>
+<circle cx="400" cy="500" r="131.6" stroke-width="1.2"/>
+<circle cx="400" cy="500" r="114.4" stroke-width="1.2"/>
+<path d="M 385.2 374.5 Q 400 352.4 424.6 372.1 Q 406.1 391.8 385.2 374.5 Z" fill="#0b0b0c" stroke-width="2"/>
+<circle cx="404.9" cy="368.4" r="2.7" fill="url(#gold)" stroke="none"/>
+<polygon points="400,431 465,543.5 335,543.5" stroke-width="2"/>
+<polygon points="400,569 335,456.5 465,456.5" stroke-width="1.2"/>
+<circle cx="400" cy="500" r="24" stroke-width="1.6" /><circle cx="400" cy="500" r="6" fill="url(#gold)" stroke="none"/></g>
+<text x="232" y="772" font-family="Georgia, serif" font-style="italic" font-size="15" fill="#6d665c">37/150</text>
+<text x="400" y="772" text-anchor="middle" font-family="Georgia, serif" font-size="11" letter-spacing="3" fill="#6d665c">OPUS MAGNUM</text>
+<path d="M 500 768 c 8 -14 14 -14 12 0 c -2 10 10 -12 18 -6 c 6 4 -4 12 6 8 c 10 -4 14 -12 22 -10 c 6 2 4 8 14 2" fill="none" stroke="#5f584e" stroke-width="1.4"/>
+<circle cx="580" cy="820" r="22" fill="none" stroke="#d3c8b0" stroke-width="2"/>
+<circle cx="580" cy="820" r="16" fill="none" stroke="#ddd3bd" stroke-width="1"/>
+<text x="580" y="825" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#d0c4aa">SG</text>
+<rect width="800" height="1200" fill="url(#vig)"/>
+<rect width="800" height="1200" filter="url(#grain)" opacity="0.9"/>
+</svg>

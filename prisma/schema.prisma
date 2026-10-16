@@ -1,0 +1,300 @@
+// Sarkhan Grim · Mystical Cards — схема БД витрины.
+// Эти же таблицы использует панель администратора.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ───────────────────────── Каталог ─────────────────────────
+
+enum ProductType {
+  DECK // Колоды Таро и оракулы
+  PRINT // Арт-принты
+  ORIGINAL // Оригиналы картин
+  ACCESSORY // Аксессуары (покрывала, свечи, мешочки)
+  BOOK // Гримуары и книги
+}
+
+enum Availability {
+  IN_STOCK
+  PRE_ORDER
+  SOLD_OUT
+}
+
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model Collection {
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  title            String
+  subtitle         String?
+  era              String?
+  excerpt          String
+  /// Лор коллекции в Markdown
+  lore             String
+  coverImage       String
+  /// Пресет синтезированного эмбиента: lilith | alchemy | bestiary | default
+  ambientPreset    String        @default("default")
+  /// Ссылка на аудиофайл (если задана — играет вместо синтеза)
+  ambientUrl       String?
+  sortOrder        Int           @default(0)
+  status           PublishStatus @default(PUBLISHED)
+  products         Product[]
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+model Product {
+  id                String        @id @default(cuid())
+  sku               String        @unique
+  slug              String        @unique
+  title             String
+  /// Оригинальное (английское) название
+  titleEn           String?
+  type              ProductType
+  collectionId      String?
+  collection        Collection?   @relation(fields: [collectionId], references: [id], onDelete: SetNull)
+  price             Decimal       @db.Decimal(10, 2)
+  shortDescription  String
+  /// Эзотерическое описание в Markdown
+  description       String
+  /// Визуальное описание предмета
+  visualDescription String?
+  /// Плоский объект «характеристика → значение»
+  specs             Json          @default("{}")
+  /// Первое изображение — основное, второе — показывается при наведении
+  images            String[]
+  stock             Int           @default(0)
+  availability      Availability  @default(IN_STOCK)
+  leadTimeDays      Int?
+  isLimited         Boolean       @default(false)
+  editionSize       Int?
+  isFeatured        Boolean       @default(false)
+  status            PublishStatus @default(PUBLISHED)
+  views             Int           @default(0)
+  sortOrder         Int           @default(0)
+  orderItems        OrderItem[]
+  oracleCards       OracleCard[]
+  artworks          Artwork[]
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@index([status, type])
+  @@index([collectionId])
+}
+
+// ───────────────────────── Оракул и галерея ─────────────────────────
+
+model OracleCard {
+  id             String   @id @default(cuid())
+  numeral        String
+  name           String
+  keyword        String
+  interpretation String
+  image          String
+  productId      String?
+  product        Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  active         Boolean  @default(true)
+  sortOrder      Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Artwork {
+  id              String        @id @default(cuid())
+  slug            String        @unique
+  title           String
+  year            Int?
+  materials       String
+  dimensions      String?
+  /// Экспликация в Markdown
+  description     String
+  image           String
+  /// Изображение сверхвысокого разрешения для «Лупы»
+  imageHiRes      String?
+  /// Аудиогид — запись голоса художника
+  audioUrl        String?
+  /// Текст аудиогида (озвучивается синтезом речи, если нет audioUrl)
+  audioTranscript String?
+  productId       String?
+  product         Product?      @relation(fields: [productId], references: [id], onDelete: SetNull)
+  views           Int           @default(0)
+  sortOrder       Int           @default(0)
+  status          PublishStatus @default(PUBLISHED)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+// ───────────────────────── Журнал ─────────────────────────
+
+enum JournalRubric {
+  SYMBOLISM
+  TAROT_HISTORY
+  ALCHEMY_ART
+  STUDIO_NEWS
+}
+
+model JournalPost {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  title       String
+  excerpt     String
+  /// Markdown. Абзац, начинающийся с «^ », — маргиналия (заметка на полях); «***» — гравюрная виньетка.
+  content     String
+  rubric      JournalRubric
+  coverImage  String?
+  author      String        @default("Сархан Грим")
+  readingTime Int           @default(5)
+  status      PublishStatus @default(PUBLISHED)
+  publishedAt DateTime      @default(now())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([status, publishedAt])
+}
+
+// ───────────────────────── Заказы ─────────────────────────
+
+enum OrderStatus {
+  PENDING // Ожидает оплаты
+  PAID // Оплачен
+  PACKED // Собран
+  SHIPPED // В пути
+  DELIVERED // Доставлен
+  CANCELLED // Отменён
+}
+
+enum ShippingMethod {
+  STANDARD // AirMail с трек-номером
+  EXPRESS // DHL Express
+}
+
+enum PaymentMethod {
+  CARD
+  CRYPTO
+}
+
+model Order {
+  id              String         @id @default(cuid())
+  number          Int            @unique @default(autoincrement())
+  /// Секрет для просмотра страницы заказа покупателем
+  accessToken     String         @unique
+  email           String
+  phone           String
+  name            String
+  country         String
+  city            String
+  postalCode      String
+  address         String
+  shippingMethod  ShippingMethod
+  paymentMethod   PaymentMethod
+  /// stripe | coinbase | demo
+  paymentProvider String
+  paymentRef      String?
+  cryptoCurrency  String?
+  promoCode       String?
+  subtotal        Decimal        @db.Decimal(10, 2)
+  discount        Decimal        @db.Decimal(10, 2)
+  shippingCost    Decimal        @db.Decimal(10, 2)
+  total           Decimal        @db.Decimal(10, 2)
+  currency        String         @default("USD")
+  status          OrderStatus    @default(PENDING)
+  trackingNumber  String?
+  blessing        String
+  note            String?
+  items           OrderItem[]
+  paidAt          DateTime?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  @@index([status, createdAt])
+  @@index([email])
+}
+
+model OrderItem {
+  id        String      @id @default(cuid())
+  orderId   String
+  order     Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String?
+  product   Product?    @relation(fields: [productId], references: [id], onDelete: SetNull)
+  sku       String
+  title     String
+  type      ProductType
+  image     String?
+  price     Decimal     @db.Decimal(10, 2)
+  quantity  Int
+}
+
+enum PromoType {
+  PERCENT
+  FREE_SHIPPING
+}
+
+model PromoCode {
+  id               String    @id @default(cuid())
+  code             String    @unique
+  description      String?
+  type             PromoType
+  /// Процент скидки для PERCENT
+  value            Decimal   @default(0) @db.Decimal(5, 2)
+  /// Минимальная сумма заказа (промежуточный итог)
+  minSubtotal      Decimal?  @db.Decimal(10, 2)
+  /// Не применять скидку к оригиналам картин
+  excludeOriginals Boolean   @default(false)
+  active           Boolean   @default(true)
+  validUntil       DateTime?
+  usageLimit       Int?
+  usageCount       Int       @default(0)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+// ───────────────────────── Связь ─────────────────────────
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  source    String   @default("site")
+  createdAt DateTime @default(now())
+}
+
+enum ContactTopic {
+  COLLABORATION
+  CUSTOM_PAINTING
+  DELIVERY
+  PRESS
+}
+
+model ContactMessage {
+  id        String       @id @default(cuid())
+  name      String
+  email     String
+  topic     ContactTopic
+  message   String
+  handled   Boolean      @default(false)
+  createdAt DateTime     @default(now())
+}
+
+/// Галереи и точки силы на карте-портулане
+model Venue {
+  id          String   @id @default(cuid())
+  name        String
+  city        String
+  country     String
+  description String
+  address     String?
+  url         String?
+  latitude    Float
+  longitude   Float
+  isStudio    Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+}
