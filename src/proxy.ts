@@ -60,7 +60,11 @@ export async function proxy(req: NextRequest) {
     }
   }
 
-  if (pathname.startsWith("/admin") && !adminHost && !isLocalHost) {
+  // Hide /admin on public custom domains. Allow on localhost, admin.*, and *.vercel.app
+  // (until a dedicated ADMIN_HOST subdomain is attached).
+  const allowAdminOnHost =
+    adminHost || isLocalHost || host.endsWith(".vercel.app") || process.env.ALLOW_ADMIN_ON_PRIMARY === "1";
+  if (pathname.startsWith("/admin") && !allowAdminOnHost) {
     return new NextResponse(null, { status: 404 });
   }
 
