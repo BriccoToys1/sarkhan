@@ -14,7 +14,7 @@ import type {
 } from "./types";
 
 /** Теги кэша — их же сбрасывает POST /api/revalidate. */
-export const CACHE_TAGS = ["products", "collections", "oracle", "gallery", "journal", "venues"] as const;
+export const CACHE_TAGS = ["products", "collections", "oracle", "gallery", "journal", "venues", "site"] as const;
 export type CacheTag = (typeof CACHE_TAGS)[number];
 
 const productInclude = { collection: { select: { slug: true, title: true } } } as const;

@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Cinzel, Cormorant_Garamond, Montserrat } from "next/font/google";
 import { AppShell } from "@/components/providers/AppShell";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { StorefrontChrome } from "@/components/layout/StorefrontChrome";
 import { SITE } from "@/lib/site";
+import { getSiteConfig } from "@/lib/site-settings";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -50,7 +50,10 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const siteConfig = await getSiteConfig();
+  const site = { ...siteConfig, url: SITE.url };
+
   return (
     <html lang="ru" className={`${cormorant.variable} ${montserrat.variable} ${cinzel.variable}`}>
       <body className="min-h-screen overflow-x-hidden bg-obsidian">
@@ -58,11 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           К содержимому
         </a>
         <AppShell>
-          <Header />
-          <main id="main" className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
+          <StorefrontChrome site={site}>{children}</StorefrontChrome>
         </AppShell>
       </body>
     </html>

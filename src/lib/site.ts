@@ -1,16 +1,9 @@
+import { DEFAULT_SITE } from "./site-config";
+
+/** Sync fallback for modules that cannot await DB (emails, build-time metadata). */
 export const SITE = {
-  name: "Sarkhan Grim",
-  tagline: "Mystical Cards & Esoteric Artifacts",
-  description:
-    "Авторские колоды Таро, оригиналы картин, офорты и ритуальные артефакты художника Сархана Грима. Готический романтизм, алхимия и тёмное оккультное искусство.",
+  ...DEFAULT_SITE,
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
-  email: "grim@mysticalcards.org",
-  address: "Прага, Старе Место, Celetná 13",
-  socials: [
-    { label: "Instagram", href: "https://instagram.com/" },
-    { label: "Telegram", href: "https://t.me/" },
-    { label: "Pinterest", href: "https://pinterest.com/" },
-  ],
 };
 
 export const NAV = [

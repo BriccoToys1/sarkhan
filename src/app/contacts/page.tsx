@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { ContactForm } from "@/components/contacts/ContactForm";
 import { PortolanMap } from "@/components/contacts/PortolanMap";
 import { getVenues } from "@/lib/data";
-import { SITE } from "@/lib/site";
+import { getSiteConfig } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
   title: "Контакты — письмо в бездну",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactsPage() {
-  const venues = await getVenues();
+  const [venues, site] = await Promise.all([getVenues(), getSiteConfig()]);
   return (
     <>
       <PageHeader eyebrow="Письмо в бездну" title="Связаться с мастерской">
@@ -23,9 +23,9 @@ export default async function ContactsPage() {
           <h2 className="mb-8 font-serif text-2xl uppercase tracking-[0.14em] text-parchment">Форма послания</h2>
           <ContactForm />
           <div className="mt-10 border-t border-gold/10 pt-6 text-sm text-ash">
-            <p>{SITE.address}</p>
-            <a href={`mailto:${SITE.email}`} className="text-gold hover:text-parchment">
-              {SITE.email}
+            <p>{site.address}</p>
+            <a href={`mailto:${site.email}`} className="text-gold hover:text-parchment">
+              {site.email}
             </a>
           </div>
         </div>

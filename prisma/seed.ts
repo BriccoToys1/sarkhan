@@ -1,4 +1,5 @@
 import "dotenv/config";
+import bcrypt from "bcryptjs";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
 
@@ -837,6 +838,18 @@ async function main() {
   await prisma.$executeRawUnsafe(
     `SELECT setval(pg_get_serial_sequence('"Order"', 'number'), (SELECT MAX("number") FROM "Order"))`,
   );
+
+  const adminEmail = (process.env.ADMIN_EMAIL || "").trim().toLowerCase();
+  const adminPassword = process.env.ADMIN_PASSWORD || "";
+  if (adminEmail && adminPassword) {
+    const password = await bcrypt.hash(adminPassword, 12);
+    await prisma.admin.upsert({
+      where: { email: adminEmail },
+      update: { password, name: "Admin" },
+      create: { email: adminEmail, password, name: "Admin" },
+    });
+    console.log(`✓ Admin: ${adminEmail}`);
+  }
 
   console.log(`✓ Сид: ${products.length} товаров, 3 коллекции, ${oracle.length} карт оракула, ${gallery.length} работ, 5 статей.`);
 }

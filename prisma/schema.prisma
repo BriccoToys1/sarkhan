@@ -298,3 +298,22 @@ model Venue {
   sortOrder   Int      @default(0)
   createdAt   DateTime @default(now())
 }
+
+// ───────────────────────── Админка ─────────────────────────
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String   @default("Admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// key/value: site_v1, admin_appearance, admin_sessions_v1, seo_*, …
+model SiteSettings {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
