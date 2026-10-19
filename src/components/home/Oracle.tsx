@@ -112,7 +112,7 @@ export function Oracle({ cards }: { cards: OracleCardDTO[] }) {
                 <p className="mt-5 font-serif text-lg italic leading-relaxed text-parchment sm:mt-6 sm:text-xl">{card.interpretation}</p>
                 <div className="mt-7 flex flex-col items-center justify-center gap-4 sm:mt-8 sm:flex-row">
                   {card.product && (
-                    <Link href={`/shop/${card.product.slug}`} className={clsx(btnPrimary, "w-full whitespace-nowrap px-6 py-3 sm:w-auto")}>
+                    <Link href={`/shop/${card.product.slug}`} className={clsx(btnPrimary, "w-full whitespace-nowrap px-6 sm:w-auto")}>
                       {card.product.type === "DECK" ? "Изучить эту колоду" : "Изучить артефакт"} <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   )}
