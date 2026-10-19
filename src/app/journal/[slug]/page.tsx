@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ChevronLeft } from "lucide-react";
 import { ArtImage } from "@/components/ui/ArtImage";
-import { Glyph } from "@/components/ui/Glyph";
 import { Vignette } from "@/components/ui/Vignette";
 import { getJournalPost, getJournalPosts } from "@/lib/data";
 import { formatDate } from "@/lib/format";
@@ -82,9 +81,6 @@ async function PostContent({ params }: Pick<PageProps<"/journal/[slug]">, "param
         <div className="space-y-7 font-serif text-[1.35rem] leading-[1.75] text-parchment/85">
           <p className="font-display text-xs uppercase tracking-[0.3em] text-gold/80">{post.excerpt}</p>
           <Markdown source={post.content} dropCap />
-        </div>
-        <div className="mt-20 flex justify-center text-gold/60">
-          <Glyph className="h-12 w-12" />
         </div>
       </div>
 

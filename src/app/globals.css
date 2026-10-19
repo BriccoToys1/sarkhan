@@ -254,16 +254,6 @@
   color: var(--color-gold-light);
   opacity: 0.9;
 }
-.marginalia::before {
-  content: "☙";
-  position: absolute;
-  left: -0.62rem;
-  top: 0.55rem;
-  font-style: normal;
-  color: var(--color-gold);
-  background: var(--color-obsidian);
-  line-height: 1;
-}
 @media (min-width: 1280px) {
   .marginalia {
     float: right;
