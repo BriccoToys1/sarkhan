@@ -65,9 +65,9 @@
 }
 
 @theme inline {
-  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  --font-sans: var(--font-montserrat), Montserrat, system-ui, sans-serif;
-  --font-display: var(--font-cinzel), Cinzel, var(--font-cormorant), Georgia, serif;
+  --font-serif: var(--font-alice), "Alice", Georgia, serif;
+  --font-sans: var(--font-alice), "Alice", Georgia, serif;
+  --font-display: var(--font-alice), "Alice", Georgia, serif;
 }
 
 @layer base {
@@ -89,9 +89,39 @@
   body {
     background: var(--color-obsidian);
     color: var(--color-parchment);
-    font-family: var(--font-sans);
+    font-family: var(--font-alice), "Alice", Georgia, serif;
+    font-weight: 400;
+    font-style: normal;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  .alice-regular {
+    font-family: var(--font-alice), "Alice", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* Текст в кнопках — вертикальный центр везде */
+  button,
+  [role="button"],
+  a[class*="btn"],
+  .cms-btn,
+  .cms-login-submit,
+  .cms-iconbtn,
+  .cms-sidebar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  button svg,
+  [role="button"] svg,
+  a[class*="btn"] svg,
+  .cms-btn svg {
+    display: block;
+    flex-shrink: 0;
   }
 
   ::selection {
@@ -119,7 +149,8 @@
   h1,
   h2,
   h3 {
-    font-family: var(--font-serif);
+    font-family: var(--font-alice), "Alice", Georgia, serif;
+    font-weight: 400;
   }
 
   button:not(:disabled),

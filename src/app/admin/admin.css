@@ -25,9 +25,9 @@
   --cms-glass: 0.35;
   --cms-wallpaper: none;
   --cms-wallpaper-dim: 0.55;
-  --cms-font: var(--font-montserrat), Montserrat, system-ui, sans-serif;
-  --cms-display: var(--font-cinzel), Cinzel, Georgia, serif;
-  --cms-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --cms-font: var(--font-alice), "Alice", Georgia, serif;
+  --cms-display: var(--font-alice), "Alice", Georgia, serif;
+  --cms-serif: var(--font-alice), "Alice", Georgia, serif;
 }
 
 body:has(.cms-root),
@@ -337,13 +337,16 @@ html[data-cms-wallpaper="1"] .cms-root::before {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px 14px;
+  min-height: 36px;
+  padding: 0 14px;
   border-radius: 8px;
   border: 1px solid var(--cms-border);
   background: var(--cms-surface-elevated);
   color: var(--cms-text);
   font: inherit;
   font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
@@ -707,15 +710,20 @@ html[data-cms-wallpaper="1"] .cms-root::before {
 }
 
 .cms-login-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  min-height: 44px;
   margin-top: 8px;
-  padding: 11px;
+  padding: 0 14px;
   border: 0;
   border-radius: 8px;
   background: var(--cms-accent);
   color: #0b0b0c;
   font: inherit;
-  font-weight: 600;
+  font-weight: 400;
+  line-height: 1;
   cursor: pointer;
 }
 

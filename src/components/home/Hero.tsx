@@ -76,14 +76,14 @@ export function Hero({ videoUrl, posterUrl }: { videoUrl?: string; posterUrl?: s
         >
           <Link
             href="/shop"
-            className="group relative inline-flex h-12 items-center justify-center gap-3 px-8 font-display text-[0.7rem] uppercase leading-none tracking-[0.3em] text-gold transition-colors duration-500 hover:text-parchment sm:h-14 sm:px-10"
+            className="group relative inline-flex h-12 items-center justify-center gap-3 px-8 font-display text-[0.7rem] font-normal uppercase leading-none tracking-[0.3em] text-gold transition-colors duration-500 hover:text-parchment sm:h-14 sm:px-10"
           >
             <span className="absolute inset-0 border border-gold/45 transition-all delay-700 duration-700 group-hover:border-gold group-hover:shadow-gold-strong" />
             <ParticleFrame />
-            <span className="relative flex items-center leading-none">Войти в Храм</span>
-            <ChevronRight className="relative h-4 w-4 shrink-0 transition-transform duration-500 group-hover:translate-x-1" />
+            <span className="relative leading-none">Войти в Храм</span>
+            <ChevronRight className="relative h-4 w-4 shrink-0 transition-transform duration-500 group-hover:translate-x-1" aria-hidden />
           </Link>
-          <a href="#oracle" className="inline-flex h-10 items-center font-display text-[0.65rem] uppercase leading-none tracking-[0.3em] text-ash transition-colors hover:text-gold">
+          <a href="#oracle" className="inline-flex h-10 items-center justify-center font-display text-[0.65rem] font-normal uppercase leading-none tracking-[0.3em] text-ash transition-colors hover:text-gold">
             Вопросить Оракула
           </a>
         </motion.div>
