@@ -46,6 +46,8 @@ export type OrderInput = z.infer<typeof orderSchema>;
 export const subscribeSchema = z.object({
   email: emailSchema,
   website: z.string().max(0).optional(),
+  consentPd: z.boolean().refine((v) => v === true, "Нужно согласие на обработку персональных данных"),
+  consentAds: z.boolean().refine((v) => v === true, "Нужно согласие на получение рекламы"),
 });
 
 export const contactMessageSchema = z.object({

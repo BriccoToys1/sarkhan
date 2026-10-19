@@ -767,7 +767,7 @@ async function main() {
       },
       {
         code: "GRIMSHIPPING",
-        description: "Бесплатная доставка при сумме заказа от $200",
+        description: "Бесплатная доставка при сумме заказа от 200 ₽",
         type: "FREE_SHIPPING",
         value: 0,
         minSubtotal: 200,

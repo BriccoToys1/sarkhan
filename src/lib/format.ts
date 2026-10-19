@@ -1,11 +1,17 @@
-const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 });
+const rub = new Intl.NumberFormat("ru-RU", {
+  style: "currency",
+  currency: "RUB",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
+});
 
 export function formatPrice(value: number) {
-  return usd.format(value);
+  return rub.format(value);
 }
 
+/** Суммы в копейках → рубли. */
 export function formatCents(cents: number) {
-  return usd.format(cents / 100);
+  return rub.format(cents / 100);
 }
 
 const dateFmt = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric" });

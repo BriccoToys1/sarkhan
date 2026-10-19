@@ -20,7 +20,6 @@ export const DEFAULT_SITE: SiteConfig = {
   email: "grim@mysticalcards.org",
   address: "Прага, Старе Место, Celetná 13",
   socials: [
-    { label: "Instagram", href: "https://instagram.com/" },
     { label: "Telegram", href: "https://t.me/" },
     { label: "Pinterest", href: "https://pinterest.com/" },
   ],
@@ -44,7 +43,7 @@ export function parseSiteConfig(raw: unknown): SiteConfig {
           label: String((s as { label?: unknown }).label ?? ""),
           href: String((s as { href?: unknown }).href ?? ""),
         }))
-        .filter((s) => s.label && s.href)
+        .filter((s) => s.label && s.href && s.label.toLowerCase() !== "instagram")
     : DEFAULT_SITE.socials;
 
   return {

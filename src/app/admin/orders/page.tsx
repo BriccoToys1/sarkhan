@@ -156,7 +156,7 @@ export default function OrdersPage() {
                     </div>
                   </td>
                   <td>
-                    ${Number(o.total).toFixed(2)} {o.currency}
+                    {Number(o.total).toLocaleString("ru-RU")} ₽
                   </td>
                   <td className="cms-muted">
                     {o.paymentMethod} / {o.paymentProvider}
@@ -201,10 +201,10 @@ export default function OrdersPage() {
               </div>
               <div>
                 <p>
-                  Доставка: {view.shippingMethod} (${Number(view.shippingCost).toFixed(2)})
+                  Доставка: {view.shippingMethod} ({Number(view.shippingCost).toLocaleString("ru-RU")} ₽)
                 </p>
                 <p>
-                  Итого: <strong>${Number(view.total).toFixed(2)}</strong>
+                  Итого: <strong>{Number(view.total).toLocaleString("ru-RU")} ₽</strong>
                   {view.promoCode ? ` · promo ${view.promoCode}` : ""}
                 </p>
                 <label className="cms-label">
@@ -238,7 +238,7 @@ export default function OrdersPage() {
                       {it.sku}
                     </div>
                   </div>
-                  <div>${Number(it.price).toFixed(2)}</div>
+                  <div>{Number(it.price).toLocaleString("ru-RU")} ₽</div>
                 </div>
               ))}
             </div>

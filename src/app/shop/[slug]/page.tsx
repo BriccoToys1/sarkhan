@@ -57,7 +57,7 @@ async function ProductContent({ params }: Pick<PageProps<"/shop/[slug]">, "param
     offers: {
       "@type": "Offer",
       price: product.price.toFixed(2),
-      priceCurrency: "USD",
+      priceCurrency: "RUB",
       url: `${SITE.url}/shop/${product.slug}`,
       availability:
         product.availability === "IN_STOCK"

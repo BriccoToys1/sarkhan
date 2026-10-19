@@ -10,8 +10,17 @@ export async function POST(request: Request) {
 
   await prisma.subscriber.upsert({
     where: { email: body.data.email },
-    update: {},
-    create: { email: body.data.email, source: "newsletter" },
+    update: {
+      consentPd: true,
+      consentAds: true,
+      source: "newsletter",
+    },
+    create: {
+      email: body.data.email,
+      source: "newsletter",
+      consentPd: true,
+      consentAds: true,
+    },
   });
   return json({ ok: true });
 }

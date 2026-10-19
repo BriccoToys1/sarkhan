@@ -62,7 +62,7 @@ export default function AdminDashboardPage() {
             </div>
             <div className="cms-stat">
               <div className="cms-stat-label">Выручка</div>
-              <div className="cms-stat-value">${data.revenue.toFixed(0)}</div>
+              <div className="cms-stat-value">{data.revenue.toLocaleString("ru-RU")} ₽</div>
             </div>
             <div className="cms-stat">
               <div className="cms-stat-label">Товары</div>
@@ -105,7 +105,7 @@ export default function AdminDashboardPage() {
                           </div>
                         </td>
                         <td>
-                          ${Number(o.total).toFixed(2)} {o.currency}
+                          {Number(o.total).toLocaleString("ru-RU")} ₽
                         </td>
                         <td>
                           <span className={`cms-status cms-status-${o.status.toLowerCase()}`}>{o.status}</span>

@@ -205,7 +205,7 @@ model Order {
   discount        Decimal        @db.Decimal(10, 2)
   shippingCost    Decimal        @db.Decimal(10, 2)
   total           Decimal        @db.Decimal(10, 2)
-  currency        String         @default("USD")
+  currency        String         @default("RUB")
   status          OrderStatus    @default(PENDING)
   trackingNumber  String?
   blessing        String
@@ -260,10 +260,12 @@ model PromoCode {
 // ───────────────────────── Связь ─────────────────────────
 
 model Subscriber {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  source    String   @default("site")
-  createdAt DateTime @default(now())
+  id           String   @id @default(cuid())
+  email        String   @unique
+  source       String   @default("site")
+  consentPd    Boolean  @default(false)
+  consentAds   Boolean  @default(false)
+  createdAt    DateTime @default(now())
 }
 
 enum ContactTopic {

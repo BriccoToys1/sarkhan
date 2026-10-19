@@ -6,7 +6,7 @@ export const PRICE_MIN = 30;
 export const PRICE_MAX = 5000;
 const STEPS = 1000;
 
-// Логарифмическая шкала: дешёвые артефакты не теряются рядом с оригиналами за $5000.
+// Логарифмическая шкала: дешёвые артефакты не теряются рядом с оригиналами за 5000 ₽.
 const toPos = (price: number) => Math.round((Math.log(price / PRICE_MIN) / Math.log(PRICE_MAX / PRICE_MIN)) * STEPS);
 const toPrice = (pos: number) => {
   const raw = PRICE_MIN * Math.pow(PRICE_MAX / PRICE_MIN, pos / STEPS);

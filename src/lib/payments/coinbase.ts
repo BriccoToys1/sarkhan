@@ -20,7 +20,7 @@ export async function createCharge(order: { id: string; number: number; total: n
       name: `Sarkhan Grim · заказ #${order.number}`,
       description: "Mystical Cards & Esoteric Artifacts",
       pricing_type: "fixed_price",
-      local_price: { amount: order.total.toFixed(2), currency: "USD" },
+      local_price: { amount: order.total.toFixed(2), currency: "RUB" },
       metadata: { orderId: order.id, orderNumber: String(order.number) },
       redirect_url: order.redirectUrl,
       cancel_url: order.cancelUrl,

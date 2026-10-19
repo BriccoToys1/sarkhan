@@ -75,7 +75,7 @@ export function calculateTotals(lines: PricingLine[], method: ShippingMethod, pr
   if (promo && active.length > 0) {
     const min = promo.minSubtotal != null ? toCents(promo.minSubtotal) : 0;
     if (subtotal < min) {
-      promoNote = `Действует при сумме заказа от $${(min / 100).toFixed(0)} — добавьте ещё $${((min - subtotal) / 100).toFixed(2)}`;
+      promoNote = `Действует при сумме заказа от ${(min / 100).toLocaleString("ru-RU")} ₽ — добавьте ещё ${((min - subtotal) / 100).toLocaleString("ru-RU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ₽`;
     } else if (promo.type === "PERCENT") {
       const eligible = active
         .filter((l) => !(promo.excludeOriginals && l.type === "ORIGINAL"))

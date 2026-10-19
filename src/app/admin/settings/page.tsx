@@ -49,7 +49,10 @@ export default function SettingsPage() {
     ]).then(([siteRes, seoRes, appRes, sessRes]) => {
       if (siteRes?.value) {
         try {
-          setSite({ ...DEFAULT_SITE, ...JSON.parse(siteRes.value) });
+          const parsed = { ...DEFAULT_SITE, ...JSON.parse(siteRes.value) } as SiteConfig;
+          parsed.socials = (parsed.socials ?? []).filter((s) => s.label.toLowerCase() !== "instagram");
+          if (parsed.socials.length === 0) parsed.socials = DEFAULT_SITE.socials;
+          setSite(parsed);
         } catch {
           /* keep default */
         }

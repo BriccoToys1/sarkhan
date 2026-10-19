@@ -177,7 +177,7 @@ export default function ProductsPage() {
                   </td>
                   <td>{p.sku}</td>
                   <td>{p.type}</td>
-                  <td>${Number(p.price).toFixed(2)}</td>
+                  <td>{Number(p.price).toLocaleString("ru-RU")} ₽</td>
                   <td>{p.stock}</td>
                   <td>
                     <span className={`cms-status cms-status-${p.status.toLowerCase()}`}>{p.status}</span>
@@ -251,7 +251,7 @@ export default function ProductsPage() {
                 </select>
               </label>
               <label className="cms-label">
-                Цена (USD)
+                Цена (₽)
                 <input
                   type="number"
                   className="cms-input"

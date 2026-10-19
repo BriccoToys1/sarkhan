@@ -15,7 +15,7 @@ export async function createPaymentIntent(order: { id: string; number: number; e
   return stripe.paymentIntents.create(
     {
       amount: order.totalCents,
-      currency: "usd",
+      currency: "rub",
       automatic_payment_methods: { enabled: true, allow_redirects: "never" },
       receipt_email: order.email,
       description: `Sarkhan Grim — заказ #${order.number}`,

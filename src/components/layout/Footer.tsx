@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Glyph } from "@/components/ui/Glyph";
+import { PinterestIcon, TelegramIcon } from "@/components/ui/icons";
 import { NAV } from "@/lib/site";
 import type { SiteConfig } from "@/lib/site-config";
 
@@ -10,7 +11,20 @@ const SUPPORT = [
   { href: "/privacy", label: "Политика конфиденциальности" },
 ];
 
+function SocialIcon({ label }: { label: string }) {
+  const key = label.trim().toLowerCase();
+  if (key.includes("telegram") || key.includes("телеграм")) {
+    return <TelegramIcon className="h-5 w-5" />;
+  }
+  if (key.includes("pinterest") || key.includes("пинтерест")) {
+    return <PinterestIcon className="h-5 w-5" />;
+  }
+  return null;
+}
+
 export function Footer({ site }: { site: SiteConfig }) {
+  const socials = site.socials.filter((s) => s.label.toLowerCase() !== "instagram");
+
   return (
     <footer className="relative border-t border-gold/10 bg-obsidian text-sm text-ash">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-4">
@@ -63,14 +77,24 @@ export function Footer({ site }: { site: SiteConfig }) {
               </a>
             </p>
           </address>
-          <ul className="mt-5 flex gap-5">
-            {site.socials.map((s) => (
-              <li key={s.label}>
-                <a href={s.href} target="_blank" rel="noopener noreferrer" className="font-display text-[0.62rem] uppercase tracking-[0.2em] text-gold/80 hover:text-gold">
-                  {s.label}
-                </a>
-              </li>
-            ))}
+          <ul className="mt-5 flex items-center gap-4">
+            {socials.map((s) => {
+              const icon = <SocialIcon label={s.label} />;
+              if (!icon) return null;
+              return (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="inline-flex h-10 w-10 items-center justify-center text-gold/80 transition-colors hover:text-gold"
+                  >
+                    {icon}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
