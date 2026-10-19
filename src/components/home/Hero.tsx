@@ -9,8 +9,8 @@ import { ParticleFrame } from "@/components/ui/ParticleFrame";
 import { ArtImage } from "@/components/ui/ArtImage";
 
 const CARDS = [
-  { src: "/art/oracle/back.svg", className: "left-[4%] top-[18%] w-[15vw] max-w-[220px] min-w-[110px]", speed: -120, rot: -12 },
-  { src: "/art/oracle/priestess.svg", className: "right-[6%] top-[12%] w-[13vw] max-w-[200px] min-w-[100px]", speed: -220, rot: 9 },
+  { src: "/art/oracle/back.svg", className: "left-[2%] top-[16%] w-[22vw] max-w-[180px] min-w-[88px] sm:left-[4%] sm:top-[18%] sm:w-[15vw] sm:max-w-[220px] sm:min-w-[110px]", speed: -120, rot: -12 },
+  { src: "/art/oracle/priestess.svg", className: "right-[2%] top-[10%] w-[20vw] max-w-[160px] min-w-[80px] sm:right-[6%] sm:top-[12%] sm:w-[13vw] sm:max-w-[200px] sm:min-w-[100px]", speed: -220, rot: 9 },
   { src: "/art/oracle/moon.svg", className: "left-[14%] bottom-[6%] w-[10vw] max-w-[150px] min-w-[80px] hidden md:block", speed: -60, rot: 6 },
   { src: "/art/oracle/death.svg", className: "right-[16%] bottom-[10%] w-[9vw] max-w-[140px] min-w-[80px] hidden md:block", speed: -300, rot: -7 },
 ];
@@ -28,7 +28,7 @@ export function Hero({ videoUrl, posterUrl }: { videoUrl?: string; posterUrl?: s
   const ys = [y0, y1, y2, y3];
 
   return (
-    <section ref={ref} className="relative flex h-[100svh] min-h-[640px] items-center justify-center overflow-hidden">
+    <section ref={ref} className="relative flex h-[100svh] min-h-[560px] items-center justify-center overflow-hidden sm:min-h-[640px]">
       <motion.div className="absolute inset-0" style={{ scale: bgScale }}>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_35%,#2a2018_0%,#0b0b0c_62%)]" />
         {videoUrl && (
@@ -51,38 +51,50 @@ export function Hero({ videoUrl, posterUrl }: { videoUrl?: string; posterUrl?: s
 
       <div className="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-transparent to-obsidian" />
 
-      <motion.div className="relative z-10 mx-auto max-w-4xl px-6 text-center" style={{ y: contentY, opacity: contentOpacity }}>
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.9 }} className="mb-8 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-abyss/50 px-4 py-1.5 backdrop-blur-md">
-          <span className="h-1.5 w-1.5 animate-ping rounded-full bg-gold" />
-          <span className="font-display text-[0.58rem] uppercase tracking-[0.34em] text-gold">Mystical Cards & Dark Occult Art</span>
-        </motion.div>
+      <motion.div className="relative z-10 mx-auto w-full max-w-4xl px-5 text-center sm:px-6" style={{ y: contentY, opacity: contentOpacity }}>
         <motion.h1
           initial={{ opacity: 0, letterSpacing: "0.5em" }}
           animate={{ opacity: 1, letterSpacing: "0.18em" }}
           transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-gold-foil animate-shimmer font-display text-5xl font-semibold leading-none sm:text-7xl lg:text-8xl"
+          className="text-gold-foil animate-shimmer font-display text-[2.6rem] font-semibold leading-none sm:text-7xl lg:text-8xl"
         >
           SARKHAN GRIM
         </motion.h1>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1.2 }} className="mx-auto mt-6 max-w-2xl font-serif text-2xl italic tracking-wide text-gold/85 sm:text-3xl">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 1.2 }}
+          className="mx-auto mt-5 max-w-2xl px-2 font-serif text-xl italic tracking-wide text-gold/85 sm:mt-6 sm:text-3xl"
+        >
           Mystical Cards & Esoteric Artifacts
         </motion.p>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 0.9 }} className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
-          <Link href="/shop" className="group relative inline-flex items-center gap-3 px-10 py-4 font-display text-[0.7rem] uppercase tracking-[0.3em] text-gold transition-colors duration-500 hover:text-parchment">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.9 }}
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:mt-12 sm:flex-row sm:gap-5"
+        >
+          <Link
+            href="/shop"
+            className="group relative inline-flex h-12 items-center justify-center gap-3 px-8 font-display text-[0.7rem] uppercase leading-none tracking-[0.3em] text-gold transition-colors duration-500 hover:text-parchment sm:h-14 sm:px-10"
+          >
             <span className="absolute inset-0 border border-gold/45 transition-all delay-700 duration-700 group-hover:border-gold group-hover:shadow-gold-strong" />
             <ParticleFrame />
-            <span className="relative">Войти в Храм</span>
-            <ChevronRight className="relative h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+            <span className="relative flex items-center leading-none">Войти в Храм</span>
+            <ChevronRight className="relative h-4 w-4 shrink-0 transition-transform duration-500 group-hover:translate-x-1" />
           </Link>
-          <a href="#oracle" className="font-display text-[0.65rem] uppercase tracking-[0.3em] text-ash transition-colors hover:text-gold">
+          <a href="#oracle" className="inline-flex h-10 items-center font-display text-[0.65rem] uppercase leading-none tracking-[0.3em] text-ash transition-colors hover:text-gold">
             Вопросить Оракула
           </a>
         </motion.div>
       </motion.div>
 
-      <a href="#oracle" className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-gold/60 transition-colors hover:text-gold" aria-label="Листать вниз">
-        <span className="font-display text-[0.5rem] tracking-[0.5em]">ВНИЗ</span>
-        <ChevronDown className="h-4 w-4 animate-bounce" />
+      <a
+        href="#oracle"
+        className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center justify-center text-gold/60 transition-colors hover:text-gold sm:bottom-8"
+        aria-label="Листать вниз"
+      >
+        <ChevronDown className="h-8 w-8 animate-bounce sm:h-10 sm:w-10" strokeWidth={1.25} />
       </a>
     </section>
   );
