@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { DeckFrames } from "@/components/about/DeckFrame";
+import { DeckFrame } from "@/components/about/DeckFrame";
 import { StudioGallery } from "@/components/about/StudioGallery";
 import { ArtImage } from "@/components/ui/ArtImage";
 import { Vignette } from "@/components/ui/Vignette";
 import { btnGhost } from "@/components/ui/buttons";
-import { decksByYear, resolveDeckPhoto } from "@/lib/about-decks";
+import { ABOUT_DECKS, resolveDeckPhoto } from "@/lib/about-decks";
 import { getSiteConfig } from "@/lib/site-settings";
 
 export const metadata: Metadata = {
@@ -17,24 +17,27 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-function Deck({ children }: { children: ReactNode }) {
-  return <span className="text-gold/90">{children}</span>;
+function Name({ children }: { children: ReactNode }) {
+  return <strong className="font-semibold text-gold">{children}</strong>;
 }
 
 type Step = {
+  id: string;
   year: string;
-  title: string;
+  /** Показывать год только у первого шага периода */
+  markYear?: boolean;
+  title?: string;
   body: ReactNode;
+  /** Ключ колоды → одна фото-рамка справа от линии */
+  deckKey?: string;
 };
 
-function buildPath(photos: Record<string, string>): Step[] {
-  const frames = (year: string, align: "left" | "right") => (
-    <DeckFrames decks={decksByYear(year)} photos={photos} align={align} label={`Колоды ${year}`} />
-  );
-
+function chronology(): Step[] {
   return [
     {
+      id: "childhood",
       year: "Детство",
+      markYear: true,
       title: "Любовь к мистике",
       body: (
         <>
@@ -50,7 +53,9 @@ function buildPath(photos: Record<string, string>): Step[] {
       ),
     },
     {
+      id: "2017",
       year: "2017",
+      markYear: true,
       title: "Сначала я просто смотрел",
       body: (
         <>
@@ -66,7 +71,9 @@ function buildPath(photos: Record<string, string>): Step[] {
       ),
     },
     {
+      id: "2023-intro",
       year: "2023",
+      markYear: true,
       title: "«А почему бы не попробовать?»",
       body: (
         <>
@@ -79,85 +86,183 @@ function buildPath(photos: Record<string, string>): Step[] {
             Сейчас понимаю: режим был, мягко говоря, не образцовый. Но тогда мне хотелось научиться всему и желательно ещё вчера.
           </p>
           <p className="italic text-gold/85">«А можно ведь попробовать создавать карты. Почему нет?»</p>
-          <p>
-            Так родилась <Deck>New Age</Deck> — моя первая колода. Название оказалось символичным: для меня действительно начиналась новая эпоха. Она была
-            сырой, наивной, местами слишком смелой. Я ещё плохо разбирался в символике и не успел глубоко изучить систему Уэйта. Зато энтузиазма хватило бы на
-            небольшое издательство.
-          </p>
-          <p>
-            Следом появились <Deck>Herald of the Night</Deck> и <Deck>Lord of Skull</Deck> — две тёмные красавицы, созданные скорее по законам моего
-            воображения, чем по правилам традиции. Тогда я прежде всего искал образ, настроение, красоту. Понимание того, как всё это должно работать внутри
-            системы Таро, пришло позже.
-          </p>
-          <p>
-            После небольшой передышки я взялся за <Deck>Red Robe</Deck>, уже внимательнее относясь к символам. Заодно попробовал создать классический оракул из
-            36 карт: на тот момент он показался мне задачей попроще. Впрочем, у начинающего автора слово «попроще» нередко означает лишь то, что он ещё не
-            обнаружил всех сложностей.
-          </p>
-          <p>
-            Примерно тогда же появились мой Telegram-канал и чат. Сначала туда приходили люди, которым нравились мои работы. Постепенно мы сдружились, начали
-            обсуждать карты, делиться идеями. Мне подсказывали, каких символов не хватает, где стоит точнее передать смысл, а где — посмотреть на изображение
-            иначе.
-          </p>
-          <p>
-            <Deck>Red Mercury</Deck> создавалась уже с этой поддержкой. И я почувствовал, насколько ценным может быть диалог с людьми, которые будут
-            пользоваться твоими картами.
-          </p>
-          <p>
-            Затем появилась <Deck>World Classic for Sarkhan</Deck> — моя версия классики Уэйта. Перерисовывать знакомые сюжеты оказалось значительно проще, чем
-            создавать собственные. Но именно этот опыт помог мне понять: лично мне недостаточно менять внешний облик уже существующей колоды. Хочется сказать
-            что-то своё.
-          </p>
-          <p>
-            И да, всё это произошло за один 2023 год. Видимо, мой внутренний художник долго ждал выхода и решил наверстать упущенное без согласования с
-            календарём.
-          </p>
-          {frames("2023", "right")}
         </>
       ),
     },
     {
+      id: "new-age",
+      year: "2023",
+      deckKey: "new-age",
+      body: (
+        <p>
+          <Name>New Age</Name> — моя первая колода. Название оказалось символичным: для меня действительно начиналась новая эпоха. Она была сырой, наивной,
+          местами слишком смелой. Я ещё плохо разбирался в символике и не успел глубоко изучить систему Уэйта. Зато энтузиазма хватило бы на небольшое
+          издательство.
+        </p>
+      ),
+    },
+    {
+      id: "herald-of-the-night",
+      year: "2023",
+      deckKey: "herald-of-the-night",
+      body: (
+        <p>
+          <Name>Herald of the Night</Name> — тёмная красавица, созданная скорее по законам моего воображения, чем по правилам традиции. Тогда я прежде всего
+          искал образ, настроение, красоту. Понимание того, как всё это должно работать внутри системы Таро, пришло позже.
+        </p>
+      ),
+    },
+    {
+      id: "lord-of-skull",
+      year: "2023",
+      deckKey: "lord-of-skull",
+      body: (
+        <p>
+          <Name>Lord of Skull</Name> — вторая тёмная красавица того же периода. Всё ещё больше про атмосферу и визуальный язык, чем про строгую символику.
+        </p>
+      ),
+    },
+    {
+      id: "red-robe",
+      year: "2023",
+      deckKey: "red-robe",
+      body: (
+        <p>
+          <Name>Red Robe</Name> — после небольшой передышки я взялся за эту колоду, уже внимательнее относясь к символам. Заодно попробовал создать классический
+          оракул из 36 карт: на тот момент он показался мне задачей попроще. Впрочем, у начинающего автора слово «попроще» нередко означает лишь то, что он ещё
+          не обнаружил всех сложностей.
+        </p>
+      ),
+    },
+    {
+      id: "telegram",
+      year: "2023",
+      body: (
+        <p>
+          Примерно тогда же появились мой Telegram-канал и чат. Сначала туда приходили люди, которым нравились мои работы. Постепенно мы сдружились, начали
+          обсуждать карты, делиться идеями. Мне подсказывали, каких символов не хватает, где стоит точнее передать смысл, а где — посмотреть на изображение иначе.
+        </p>
+      ),
+    },
+    {
+      id: "red-mercury",
+      year: "2023",
+      deckKey: "red-mercury",
+      body: (
+        <p>
+          <Name>Red Mercury</Name> создавалась уже с этой поддержкой. И я почувствовал, насколько ценным может быть диалог с людьми, которые будут пользоваться
+          твоими картами.
+        </p>
+      ),
+    },
+    {
+      id: "world-classic-for-sarkhan",
+      year: "2023",
+      deckKey: "world-classic-for-sarkhan",
+      body: (
+        <p>
+          <Name>World Classic for Sarkhan</Name> — моя версия классики Уэйта. Перерисовывать знакомые сюжеты оказалось значительно проще, чем создавать
+          собственные. Но именно этот опыт помог мне понять: лично мне недостаточно менять внешний облик уже существующей колоды. Хочется сказать что-то своё.
+        </p>
+      ),
+    },
+    {
+      id: "2023-close",
+      year: "2023",
+      body: (
+        <p>
+          И да, всё это произошло за один 2023 год. Видимо, мой внутренний художник долго ждал выхода и решил наверстать упущенное без согласования с календарём.
+        </p>
+      ),
+    },
+    {
+      id: "2024-intro",
       year: "2024",
+      markYear: true,
       title: "Новые возможности",
       body: (
-        <>
-          <p>
-            В 2024 году случилось небольшое сотрудничество с другой типографией. Улучшилось качество материалов, появились новые возможности оформления.
-            Одновременно рос и я: продолжал учиться, лучше понимал инструменты, увереннее работал с изображениями. Сами программы тоже развивались, позволяя
-            воплощать всё более сложные идеи.
-          </p>
-          <p>
-            Так появились <Deck>The Golden Age</Deck> и полноценное переиздание <Deck>Red Robe</Deck> — колоды, в которых я уже видел заметный шаг вперёд и по
-            иллюстрациям, и по исполнению.
-          </p>
-          <p>
-            Сообщество тем временем росло. Появлялись новые идеи, пожелания и просьбы вернуть прежние работы. Мне захотелось ответить на эту поддержку, и я
-            выпустил четыре небольших тиража:
-          </p>
-          <ul className="space-y-2 border-l border-gold/30 pl-4">
-            <li>
-              <Deck>Red Mercury</Deck> — переиздание с небольшими улучшениями;
-            </li>
-            <li>
-              <Deck>«Славянка»</Deck> — акварельное Таро с атмосферой старых славянских сказок;
-            </li>
-            <li>
-              <Deck>«Страшно-смешные сказки»</Deck> — колоду, которую создавал ради удовольствия и возможности немного похулиганить;
-            </li>
-            <li>
-              <Deck>Emotion Tarot</Deck> — ещё один свободный эксперимент, неожиданно полюбившийся многим.
-            </li>
-          </ul>
-          <p>
-            Каждая вышла ограниченным тестовым тиражом в 100 экземпляров. Тогда я ещё не знал, что некоторые из этих экспериментов обязательно потребуют
-            продолжения.
-          </p>
-          {frames("2024", "left")}
-        </>
+        <p>
+          В 2024 году случилось небольшое сотрудничество с другой типографией. Улучшилось качество материалов, появились новые возможности оформления.
+          Одновременно рос и я: продолжал учиться, лучше понимал инструменты, увереннее работал с изображениями. Сами программы тоже развивались, позволяя
+          воплощать всё более сложные идеи.
+        </p>
       ),
     },
     {
+      id: "the-golden-age",
+      year: "2024",
+      deckKey: "the-golden-age",
+      body: (
+        <p>
+          <Name>The Golden Age</Name> — колода, в которой я уже видел заметный шаг вперёд и по иллюстрациям, и по исполнению.
+        </p>
+      ),
+    },
+    {
+      id: "red-robe-reprint",
+      year: "2024",
+      deckKey: "red-robe-reprint",
+      body: (
+        <p>
+          <Name>Red Robe (переиздание)</Name> — полноценное переиздание, тоже с заметным шагом вперёд по качеству и аккуратности.
+        </p>
+      ),
+    },
+    {
+      id: "2024-community",
+      year: "2024",
+      body: (
+        <p>
+          Сообщество тем временем росло. Появлялись новые идеи, пожелания и просьбы вернуть прежние работы. Мне захотелось ответить на эту поддержку, и я
+          выпустил четыре небольших тиража — каждая вышла ограниченным тестовым тиражом в 100 экземпляров. Тогда я ещё не знал, что некоторые из этих
+          экспериментов обязательно потребуют продолжения.
+        </p>
+      ),
+    },
+    {
+      id: "red-mercury-reprint",
+      year: "2024",
+      deckKey: "red-mercury-reprint",
+      body: (
+        <p>
+          <Name>Red Mercury (переиздание)</Name> — переиздание с небольшими улучшениями.
+        </p>
+      ),
+    },
+    {
+      id: "slavyanka",
+      year: "2024",
+      deckKey: "slavyanka",
+      body: (
+        <p>
+          <Name>Славянка</Name> — акварельное Таро с атмосферой старых славянских сказок.
+        </p>
+      ),
+    },
+    {
+      id: "scary-funny-tales",
+      year: "2024",
+      deckKey: "scary-funny-tales",
+      body: (
+        <p>
+          <Name>Страшно-смешные сказки</Name> — колода, которую создавал ради удовольствия и возможности немного похулиганить.
+        </p>
+      ),
+    },
+    {
+      id: "emotion-tarot",
+      year: "2024",
+      deckKey: "emotion-tarot",
+      body: (
+        <p>
+          <Name>Emotion Tarot</Name> — ещё один свободный эксперимент, неожиданно полюбившийся многим.
+        </p>
+      ),
+    },
+    {
+      id: "2025-intro",
       year: "2025",
+      markYear: true,
       title: "От количества — к осмысленности",
       body: (
         <>
@@ -167,49 +272,82 @@ function buildPath(photos: Record<string, string>): Step[] {
             не конечной целью. Всё важнее становились точность символов, внутренняя логика и то, насколько удобно человеку взаимодействовать с картами.
           </p>
           <p>Мне захотелось создавать не просто эффектные колоды, а продуманный инструмент для практики — такой, к которому будут возвращаться.</p>
-          <p>
-            Ближе к концу 2025 года появилась <Deck>The Secret World</Deck>, одна из моих любимых работ. В ней для меня сошлись накопленный опыт, внимание к
-            деталям и более ясное понимание того, что я хочу делать дальше.
-          </p>
-          <p>
-            Была отрисована и <Deck>The Twilight Gate</Deck>. Однако в 2026 году я решил её переработать. Сейчас она ждёт своего часа: не каждой колоде нужно
-            выходить сразу после последнего штриха.
-          </p>
-          {frames("2025", "right")}
         </>
       ),
     },
     {
+      id: "the-secret-world",
+      year: "2025",
+      deckKey: "the-secret-world",
+      body: (
+        <p>
+          <Name>The Secret World</Name> — одна из моих любимых работ. Ближе к концу 2025 года в ней для меня сошлись накопленный опыт, внимание к деталям и более
+          ясное понимание того, что я хочу делать дальше.
+        </p>
+      ),
+    },
+    {
+      id: "the-twilight-gate",
+      year: "2025",
+      deckKey: "the-twilight-gate",
+      body: (
+        <p>
+          <Name>The Twilight Gate</Name> была отрисована, однако в 2026 году я решил её переработать. Сейчас она ждёт своего часа: не каждой колоде нужно
+          выходить сразу после последнего штриха.
+        </p>
+      ),
+    },
+    {
+      id: "2026-intro",
       year: "2026",
+      markYear: true,
       title: "Возвращения и незавершённые истории",
+      body: <p>В 2026 году я вернулся к уже знакомым историям — и к одной, которую когда-то не смог закончить.</p>,
+    },
+    {
+      id: "emotion-tarot-2026",
+      year: "2026",
+      deckKey: "emotion-tarot-2026",
+      body: (
+        <p>
+          <Name>Emotion Tarot</Name> — я немного доработал её и выпустил вновь. Желающих оказалось гораздо больше, чем могли удовлетворить первые сто
+          экземпляров. Большой формат тоже пришёлся многим по душе — оказалось, эмоциям действительно полезно дать побольше места.
+        </p>
+      ),
+    },
+    {
+      id: "the-mystery-of-blood",
+      year: "2026",
+      deckKey: "the-mystery-of-blood",
       body: (
         <>
           <p>
-            В 2026 году я вернулся к <Deck>Emotion Tarot</Deck>: немного доработал её и выпустил вновь. Желающих оказалось гораздо больше, чем могли
-            удовлетворить первые сто экземпляров. Большой формат тоже пришёлся многим по душе — оказалось, эмоциям действительно полезно дать побольше места.
-          </p>
-          <p>
-            Но особое место сейчас занимает <Deck>The Mystery of Blood</Deck>.
-          </p>
-          <p>
-            Я начал создавать эту колоду ещё в 2023 году — и тогда не смог закончить. Мрачная, насыщенная красными оттенками, красивая и сложная, она
-            потребовала больше сил, чем у меня было. Работа буквально вымотала меня. Теперь понимаю: я просто ещё не был к ней готов.
+            <Name>The Mystery of Blood</Name> занимает особое место. Я начал создавать эту колоду ещё в 2023 году — и тогда не смог закончить. Мрачная,
+            насыщенная красными оттенками, красивая и сложная, она потребовала больше сил, чем у меня было. Работа буквально вымотала меня. Теперь понимаю: я
+            просто ещё не был к ней готов.
           </p>
           <p>
             Спустя почти три года я вернулся. С другим опытом, большим терпением и пониманием того, чего ей не хватало. Работа снова занимает много времени, но
             теперь я вижу, как постепенно складывается именно та колода, которую когда-то задумал.
           </p>
           <p>Надеюсь порадовать ею и себя, и вас в 2027 году. Торопить её я больше не хочу.</p>
-          <p>
-            О двух своих колодах я здесь намеренно не рассказал. Кто знает — тот знает. В биографии человека с такой любовью к мистике должна же остаться хотя
-            бы пара закрытых дверей.
-          </p>
-          {frames("2026", "left")}
         </>
       ),
     },
     {
+      id: "secrets",
+      year: "2026",
+      body: (
+        <p>
+          О двух своих колодах я здесь намеренно не рассказал. Кто знает — тот знает. В биографии человека с такой любовью к мистике должна же остаться хотя бы
+          пара закрытых дверей.
+        </p>
+      ),
+    },
+    {
+      id: "thanks",
       year: "∞",
+      markYear: true,
       title: "И самое главное",
       body: (
         <>
@@ -267,11 +405,12 @@ const TECHNIQUE = [
 export default async function AboutPage() {
   const site = await getSiteConfig();
   const photo = site.aboutPhotoUrl || "/art/about/portrait.svg";
-  const resolved: Record<string, string> = {};
-  for (const d of [...decksByYear("2023"), ...decksByYear("2024"), ...decksByYear("2025"), ...decksByYear("2026")]) {
-    resolved[d.key] = resolveDeckPhoto(d.key, site.aboutDeckPhotos ?? {});
+  const photos: Record<string, string> = {};
+  for (const d of ABOUT_DECKS) {
+    photos[d.key] = resolveDeckPhoto(d.key, site.aboutDeckPhotos ?? {});
   }
-  const path = buildPath(resolved);
+  const path = chronology();
+  const deckName = (key: string) => ABOUT_DECKS.find((d) => d.key === key)?.name ?? key;
 
   return (
     <>
@@ -314,19 +453,29 @@ export default async function AboutPage() {
         <div className="mx-auto max-w-5xl px-6">
           <span className="eyebrow mb-4 block text-center">I</span>
           <h2 className="text-center font-serif text-4xl uppercase tracking-[0.14em] text-parchment">Хронология</h2>
-          <ol className="relative mt-20 space-y-20 before:absolute before:bottom-0 before:left-4 before:top-0 before:w-px before:bg-gradient-to-b before:from-gold/60 before:via-gold/20 before:to-transparent md:before:left-1/2">
-            {path.map((step, i) => {
-              const alignRight = i % 2 === 0;
+          <ol className="relative mt-20 space-y-14 before:absolute before:bottom-0 before:left-4 before:top-0 before:w-px before:bg-gradient-to-b before:from-gold/60 before:via-gold/20 before:to-transparent md:before:left-1/2">
+            {path.map((step) => {
+              const hasDeck = Boolean(step.deckKey);
               return (
-                <li
-                  key={`${step.year}-${step.title}`}
-                  className={`relative grid gap-4 pl-14 md:grid-cols-2 md:gap-16 md:pl-0 ${alignRight ? "" : "md:[&>div]:col-start-2"} ${alignRight ? "md:text-right md:[&_ul.space-y-2]:border-r md:[&_ul.space-y-2]:border-l-0 md:[&_ul.space-y-2]:pr-4 md:[&_ul.space-y-2]:pl-0" : ""}`}
-                >
-                  <span className="absolute left-4 top-2 h-3 w-3 -translate-x-1/2 rotate-45 border border-gold bg-obsidian md:left-1/2" aria-hidden />
-                  <div>
-                    <span className="font-display text-3xl text-gold">{step.year}</span>
-                    <h3 className="mt-2 font-serif text-2xl uppercase tracking-[0.12em] text-parchment">{step.title}</h3>
-                    <div className="mt-4 space-y-4 font-serif text-lg leading-relaxed text-ash">{step.body}</div>
+                <li key={step.id} className="relative grid gap-6 pl-14 md:grid-cols-2 md:items-start md:gap-16 md:pl-0">
+                  <span className="absolute left-4 top-3 h-3 w-3 -translate-x-1/2 rotate-45 border border-gold bg-obsidian md:left-1/2" aria-hidden />
+
+                  {/* Текст — всегда слева от линии */}
+                  <div className="md:pr-4 md:text-right">
+                    {step.markYear && <span className="font-display text-3xl text-gold">{step.year}</span>}
+                    {step.title && (
+                      <h3 className={`font-serif text-2xl uppercase tracking-[0.12em] text-parchment ${step.markYear ? "mt-2" : ""}`}>{step.title}</h3>
+                    )}
+                    <div className={`space-y-4 font-serif text-lg leading-relaxed text-ash ${step.markYear || step.title ? "mt-4" : ""}`}>{step.body}</div>
+                  </div>
+
+                  {/* Фото — всегда справа от линии, только у абзаца колоды */}
+                  <div className="md:pl-4">
+                    {hasDeck && step.deckKey ? (
+                      <DeckFrame name={deckName(step.deckKey)} photoUrl={photos[step.deckKey] ?? ""} />
+                    ) : (
+                      <span className="hidden md:block" aria-hidden />
+                    )}
                   </div>
                 </li>
               );
