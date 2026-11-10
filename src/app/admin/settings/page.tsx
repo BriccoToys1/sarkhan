@@ -132,7 +132,23 @@ export default function SettingsPage() {
             Адрес
             <input className="cms-input" value={site.address} onChange={(e) => setSite({ ...site, address: e.target.value })} />
           </label>
+          <label className="cms-label">
+            Фото «Об авторе» (URL)
+            <input
+              className="cms-input"
+              placeholder="/art/about/portrait.svg или /uploads/…"
+              value={site.aboutPhotoUrl ?? ""}
+              onChange={(e) => setSite({ ...site, aboutPhotoUrl: e.target.value })}
+            />
+          </label>
         </div>
+        {site.aboutPhotoUrl ? (
+          <div className="cms-label">
+            Превью фото
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={site.aboutPhotoUrl} alt="Превью фото автора" className="mt-2 h-40 w-32 object-cover" style={{ border: "1px solid var(--cms-border)" }} />
+          </div>
+        ) : null}
         <label className="cms-label">
           Описание
           <textarea className="cms-textarea" rows={3} value={site.description} onChange={(e) => setSite({ ...site, description: e.target.value })} />

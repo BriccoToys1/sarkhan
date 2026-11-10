@@ -9,6 +9,8 @@ export interface SiteConfig {
   description: string;
   email: string;
   address: string;
+  /** Фото на странице «Об авторе» (URL из медиабиблиотеки или /art/…). */
+  aboutPhotoUrl: string;
   socials: { label: string; href: string }[];
 }
 
@@ -19,6 +21,7 @@ export const DEFAULT_SITE: SiteConfig = {
     "Авторские колоды Таро, оригиналы картин, офорты и ритуальные артефакты художника Сархана Грима. Готический романтизм, алхимия и тёмное оккультное искусство.",
   email: "grim@mysticalcards.org",
   address: "Прага, Старе Место, Celetná 13",
+  aboutPhotoUrl: "/art/about/portrait.svg",
   socials: [
     { label: "Telegram", href: "https://t.me/" },
     { label: "Pinterest", href: "https://pinterest.com/" },
@@ -46,12 +49,18 @@ export function parseSiteConfig(raw: unknown): SiteConfig {
         .filter((s) => s.label && s.href && s.label.toLowerCase() !== "instagram")
     : DEFAULT_SITE.socials;
 
+  const aboutPhotoUrl =
+    typeof obj.aboutPhotoUrl === "string" && obj.aboutPhotoUrl.trim()
+      ? obj.aboutPhotoUrl.trim()
+      : DEFAULT_SITE.aboutPhotoUrl;
+
   return {
     name: typeof obj.name === "string" && obj.name.trim() ? obj.name.trim() : DEFAULT_SITE.name,
     tagline: typeof obj.tagline === "string" ? obj.tagline : DEFAULT_SITE.tagline,
     description: typeof obj.description === "string" ? obj.description : DEFAULT_SITE.description,
     email: typeof obj.email === "string" && obj.email.includes("@") ? obj.email.trim() : DEFAULT_SITE.email,
     address: typeof obj.address === "string" ? obj.address : DEFAULT_SITE.address,
+    aboutPhotoUrl,
     socials: socials.length ? socials : DEFAULT_SITE.socials,
   };
 }
