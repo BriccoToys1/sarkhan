@@ -1,3 +1,5 @@
+import { ABOUT_DECKS, DEFAULT_ABOUT_DECK_PHOTOS } from "./about-decks";
+
 export const SITE_SETTING_KEY = "site_v1";
 export const SEO_SETTING_KEY = "seo_global";
 export const APPEARANCE_SETTING_KEY = "admin_appearance";
@@ -11,6 +13,8 @@ export interface SiteConfig {
   address: string;
   /** Фото на странице «Об авторе» (URL из медиабиблиотеки или /art/…). */
   aboutPhotoUrl: string;
+  /** Фото рамок колод в хронологии: key колоды → URL. */
+  aboutDeckPhotos: Record<string, string>;
   socials: { label: string; href: string }[];
 }
 
@@ -22,11 +26,23 @@ export const DEFAULT_SITE: SiteConfig = {
   email: "grim@mysticalcards.org",
   address: "Прага, Старе Место, Celetná 13",
   aboutPhotoUrl: "/art/about/portrait.svg",
+  aboutDeckPhotos: { ...DEFAULT_ABOUT_DECK_PHOTOS },
   socials: [
     { label: "Telegram", href: "https://t.me/" },
     { label: "Pinterest", href: "https://pinterest.com/" },
   ],
 };
+
+function parseDeckPhotos(raw: unknown): Record<string, string> {
+  const out: Record<string, string> = { ...DEFAULT_ABOUT_DECK_PHOTOS };
+  if (!raw || typeof raw !== "object") return out;
+  const obj = raw as Record<string, unknown>;
+  for (const deck of ABOUT_DECKS) {
+    const v = obj[deck.key];
+    if (typeof v === "string" && v.trim()) out[deck.key] = v.trim();
+  }
+  return out;
+}
 
 export function parseSiteConfig(raw: unknown): SiteConfig {
   let obj: Record<string, unknown> = {};
@@ -61,6 +77,7 @@ export function parseSiteConfig(raw: unknown): SiteConfig {
     email: typeof obj.email === "string" && obj.email.includes("@") ? obj.email.trim() : DEFAULT_SITE.email,
     address: typeof obj.address === "string" ? obj.address : DEFAULT_SITE.address,
     aboutPhotoUrl,
+    aboutDeckPhotos: parseDeckPhotos(obj.aboutDeckPhotos),
     socials: socials.length ? socials : DEFAULT_SITE.socials,
   };
 }

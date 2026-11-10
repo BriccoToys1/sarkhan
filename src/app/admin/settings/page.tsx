@@ -12,7 +12,8 @@ import {
   parseAppearance,
   type AdminAppearance,
 } from "@/components/admin/appearance";
-import { DEFAULT_SITE, SEO_SETTING_KEY, SESSIONS_SETTING_KEY, SITE_SETTING_KEY, type SiteConfig } from "@/lib/site-config";
+import { ABOUT_DECKS } from "@/lib/about-decks";
+import { DEFAULT_SITE, parseSiteConfig, SEO_SETTING_KEY, SESSIONS_SETTING_KEY, SITE_SETTING_KEY, type SiteConfig } from "@/lib/site-config";
 
 interface SeoConfig {
   title: string;
@@ -49,10 +50,7 @@ export default function SettingsPage() {
     ]).then(([siteRes, seoRes, appRes, sessRes]) => {
       if (siteRes?.value) {
         try {
-          const parsed = { ...DEFAULT_SITE, ...JSON.parse(siteRes.value) } as SiteConfig;
-          parsed.socials = (parsed.socials ?? []).filter((s) => s.label.toLowerCase() !== "instagram");
-          if (parsed.socials.length === 0) parsed.socials = DEFAULT_SITE.socials;
-          setSite(parsed);
+          setSite(parseSiteConfig(siteRes.value));
         } catch {
           /* keep default */
         }
@@ -144,7 +142,7 @@ export default function SettingsPage() {
         </div>
         {site.aboutPhotoUrl ? (
           <div className="cms-label">
-            Превью фото
+            Превью фото автора
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={site.aboutPhotoUrl} alt="Превью фото автора" className="mt-2 h-40 w-32 object-cover" style={{ border: "1px solid var(--cms-border)" }} />
           </div>
@@ -153,6 +151,48 @@ export default function SettingsPage() {
           Описание
           <textarea className="cms-textarea" rows={3} value={site.description} onChange={(e) => setSite({ ...site, description: e.target.value })} />
         </label>
+
+        <div className="cms-label" style={{ marginTop: "1.25rem" }}>
+          Фото колод в хронологии
+          <p style={{ margin: "0.35rem 0 0.75rem", opacity: 0.7, fontSize: "0.85rem" }}>
+            URL из раздела «Медиа». Каждая рамка на странице «Об авторе» привязана к названию колоды.
+          </p>
+          <div style={{ display: "grid", gap: "0.85rem" }}>
+            {ABOUT_DECKS.map((deck) => {
+              const url = site.aboutDeckPhotos?.[deck.key] ?? "";
+              return (
+                <div key={deck.key} style={{ display: "grid", gridTemplateColumns: "5.5rem 1fr", gap: "0.75rem", alignItems: "center" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <div
+                    style={{
+                      aspectRatio: "2 / 3",
+                      border: "1px solid var(--cms-border)",
+                      background: "rgba(0,0,0,0.25)",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {url ? <img src={url} alt={deck.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : null}
+                  </div>
+                  <label className="cms-label" style={{ margin: 0 }}>
+                    {deck.name}
+                    <span style={{ display: "block", opacity: 0.55, fontSize: "0.75rem", marginBottom: "0.25rem" }}>{deck.year}</span>
+                    <input
+                      className="cms-input"
+                      placeholder="/uploads/… или /art/…"
+                      value={url}
+                      onChange={(e) =>
+                        setSite({
+                          ...site,
+                          aboutDeckPhotos: { ...(site.aboutDeckPhotos ?? {}), [deck.key]: e.target.value },
+                        })
+                      }
+                    />
+                  </label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
         <label className="cms-label">
           Соцсети (JSON: [{`{label, href}`}])
           <textarea
