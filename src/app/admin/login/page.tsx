@@ -42,6 +42,8 @@ export default function AdminLoginPage() {
     <div className="cms-login-wrap">
       <form onSubmit={handleSubmit} className="cms-login-card">
         <div className="cms-login-brand">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/logo.png" alt="Mystical Cards" width={88} height={88} className="cms-login-logo" />
           <h1 className="cms-login-title">Sarkhan Grim</h1>
           <p className="cms-login-subtitle">Вход в админ-панель</p>
         </div>

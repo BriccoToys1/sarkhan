@@ -30,7 +30,7 @@ export function Footer({ site }: { site: SiteConfig }) {
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-4">
         <div className="space-y-5">
           <Link href="/" className="flex items-center gap-3">
-            <Glyph className="h-9 w-9 text-gold" />
+            <Glyph className="h-10 w-10 rounded-full" />
             <span className="flex flex-col">
               <span className="font-display text-base tracking-[0.25em] text-gold">
                 {site.name.toUpperCase()}

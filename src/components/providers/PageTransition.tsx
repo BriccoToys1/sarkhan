@@ -106,7 +106,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
           <div className="flex flex-col items-center gap-6 text-gold">
             <div className="relative">
               <div className="absolute inset-0 -m-10 rounded-full bg-gold/10 blur-3xl" />
-              <Glyph animated className="relative h-24 w-24 drop-shadow-[0_0_18px_rgba(197,168,128,0.45)]" />
+              <Glyph animated className="relative h-24 w-24 rounded-full drop-shadow-[0_0_18px_rgba(197,168,128,0.45)]" />
             </div>
             <span className="font-display text-[0.6rem] tracking-[0.6em] text-gold/70">SARKHAN GRIM</span>
           </div>

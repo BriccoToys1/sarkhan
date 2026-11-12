@@ -99,6 +99,8 @@ export function AdminSidebar() {
     <>
       <aside className={`cms-sidebar${collapsed ? " is-collapsed" : ""}`}>
         <div className="cms-sidebar-brand">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/logo.png" alt="" width={28} height={28} className="cms-sidebar-logo" />
           <span className="cms-sidebar-brand-text">Sarkhan Grim</span>
         </div>
         <nav className="cms-nav">

@@ -25,7 +25,7 @@ export function Manifesto() {
   return (
     <section ref={ref} className="relative min-h-[130vh] bg-obsidian">
       <div className="sticky top-0 flex min-h-screen items-center justify-center overflow-hidden px-6 py-24">
-        <Glyph className="pointer-events-none absolute h-[70vmin] w-[70vmin] text-gold/[0.04]" strokeWidth={0.5} />
+        <Glyph className="pointer-events-none absolute h-[70vmin] w-[70vmin] opacity-[0.06]" />
         <div className="relative mx-auto max-w-4xl text-center">
           <span className="mb-8 block font-display text-2xl tracking-[0.5em] text-gold/70">🜁 🜄 🜃 🜂</span>
           <h2 className="sr-only">Манифест автора</h2>

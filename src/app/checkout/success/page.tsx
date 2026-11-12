@@ -43,7 +43,7 @@ async function SuccessContent({ searchParams }: Pick<PageProps<"/checkout/succes
   if (!order) {
     return (
       <div className="relative mx-auto max-w-xl text-center">
-        <Glyph className="mx-auto h-16 w-16 text-gold/50" />
+        <Glyph className="mx-auto h-16 w-16 opacity-60" />
         <h1 className="mt-8 font-serif text-3xl uppercase tracking-[0.14em] text-parchment">Манускрипт не найден</h1>
         <p className="mt-4 font-serif text-xl text-ash">Ссылка на заказ устарела или повреждена. Проверьте письмо, которое мы отправили на вашу почту.</p>
         <Link href="/" className={`${btnPrimary} mt-10`}>
@@ -60,7 +60,7 @@ async function SuccessContent({ searchParams }: Pick<PageProps<"/checkout/succes
       <SuccessEffects orderId={order.id} token={token} pending={pending} />
       <div className="relative mx-auto h-28 w-28">
         <span className="absolute inset-0 rounded-full border border-gold/30 animate-breathe" />
-        <Glyph animated className="relative h-28 w-28 p-4 text-gold drop-shadow-[0_0_20px_rgba(197,168,128,0.5)]" />
+        <Glyph animated className="relative h-28 w-28 p-4 drop-shadow-[0_0_20px_rgba(197,168,128,0.5)]" />
       </div>
       <h1 className="mt-10 font-serif text-3xl font-semibold uppercase tracking-[0.12em] text-gold sm:text-4xl">Ваша связь с бездной установлена</h1>
       <p className="mx-auto mt-6 max-w-xl font-serif text-xl leading-relaxed text-parchment/90">

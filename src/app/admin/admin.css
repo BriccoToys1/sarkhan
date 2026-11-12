@@ -103,6 +103,18 @@ html[data-cms-wallpaper="1"] .cms-root::before {
   min-height: 56px;
 }
 
+.cms-sidebar-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cms-sidebar.is-collapsed .cms-sidebar-logo {
+  margin-inline: auto;
+}
+
 .cms-sidebar-brand-text {
   font-family: var(--cms-display);
   font-size: 13px;
@@ -680,6 +692,15 @@ html[data-cms-wallpaper="1"] .cms-root::before {
 .cms-login-brand {
   text-align: center;
   margin-bottom: 22px;
+}
+
+.cms-login-logo {
+  display: block;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 14px;
+  object-fit: contain;
+  border-radius: 50%;
 }
 
 .cms-login-title {

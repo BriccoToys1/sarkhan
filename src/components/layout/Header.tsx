@@ -51,7 +51,7 @@ export function Header() {
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <Link href="/" className="group flex items-center gap-3" aria-label="Sarkhan Grim — на главную">
-            <Glyph className="h-8 w-8 text-gold transition-transform duration-700 group-hover:rotate-[360deg]" />
+            <Glyph className="h-9 w-9 rounded-full transition-transform duration-700 group-hover:rotate-[360deg]" />
             <span className="flex flex-col">
               <span className="font-display text-lg tracking-[0.28em] text-gold transition-colors group-hover:text-parchment">SARKHAN GRIM</span>
               <span className="text-[0.55rem] uppercase tracking-[0.45em] text-ash">Mystical Cards</span>
@@ -114,7 +114,7 @@ export function Header() {
             <button type="button" onClick={() => setMenu(false)} className="absolute right-6 top-6 text-ash hover:text-gold" aria-label="Закрыть меню">
               <X className="h-8 w-8" />
             </button>
-            <Glyph className="mb-4 h-14 w-14 text-gold/70" />
+            <Glyph className="mb-4 h-14 w-14 rounded-full opacity-90" />
             {NAV.map((item, i) => (
               <motion.div key={item.href} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0, transition: { delay: 0.15 + i * 0.06 } }}>
                 <Link href={item.href} className={clsx("font-serif text-2xl uppercase tracking-[0.25em]", isActive(item.href) ? "text-gold" : "text-parchment hover:text-gold")}>

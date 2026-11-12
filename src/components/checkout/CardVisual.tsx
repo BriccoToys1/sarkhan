@@ -36,7 +36,7 @@ function BrandMark({ brand }: { brand: CardBrand }) {
   if (brand === "amex") return <span className="border border-gold-light px-1.5 font-display text-xs tracking-widest text-gold-light">AMEX</span>;
   if (brand === "mir") return <span className="font-display text-xl tracking-[0.2em] text-gold-light">МИР</span>;
   if (brand === "unionpay") return <span className="font-display text-xs tracking-widest text-gold-light">UnionPay</span>;
-  return <Glyph className="h-8 w-8 text-gold/70" />;
+  return <Glyph className="h-8 w-8 opacity-80" />;
 }
 
 const field = "w-full bg-transparent text-gold-light placeholder:text-ash/45 focus:outline-none";
@@ -83,7 +83,7 @@ export function CardVisual({
         {/* лицевая сторона */}
         <div className="backface-hidden absolute inset-0 overflow-hidden rounded-2xl border border-gold/30 bg-[linear-gradient(135deg,#1c1b20_0%,#0e0d10_45%,#16141a_100%)] p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.9),0_0_40px_rgba(197,168,128,0.1)]">
           <span className="foil-sheen pointer-events-none absolute inset-0 opacity-80" aria-hidden />
-          <Glyph className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 text-gold/[0.06]" strokeWidth={0.8} />
+          <Glyph className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 opacity-[0.08]" />
           <div className="relative flex h-full flex-col justify-between">
             <div className="flex items-start justify-between">
               <div className="h-9 w-12 rounded-md border border-gold/50 bg-[linear-gradient(135deg,#8a6d45,#e6d3ad,#8a6d45)] p-1" aria-hidden>
