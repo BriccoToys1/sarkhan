@@ -31,11 +31,11 @@ export function Footer({ site }: { site: SiteConfig }) {
         <div className="space-y-5">
           <Link href="/" className="flex items-center gap-3">
             <Glyph className="h-10 w-10 rounded-full" />
-            <span className="brand-lockup">
-              <span className="brand-lockup-title font-display text-base tracking-[0.25em] text-gold">
+            <span className="flex flex-col">
+              <span className="font-display text-base tracking-[0.25em] text-gold">
                 {site.name.toUpperCase()}
               </span>
-              <span className="brand-lockup-tag">Mystical Cards</span>
+              <span className="brand-glow text-[0.55rem] uppercase tracking-[0.45em]">Mystical Cards</span>
             </span>
           </Link>
           <p className="leading-relaxed text-ash/80">{site.tagline}</p>
