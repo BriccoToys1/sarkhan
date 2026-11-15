@@ -52,9 +52,11 @@ export function Header() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <Link href="/" className="group flex items-center gap-3" aria-label="Sarkhan Grim — на главную">
             <Glyph className="h-9 w-9 rounded-full transition-transform duration-700 group-hover:rotate-[360deg]" />
-            <span className="flex flex-col">
-              <span className="font-display text-lg tracking-[0.28em] text-gold transition-colors group-hover:text-parchment">SARKHAN GRIM</span>
-              <span className="text-[0.55rem] uppercase tracking-[0.45em] text-ash">Mystical Cards</span>
+            <span className="brand-lockup">
+              <span className="brand-lockup-title font-display text-lg tracking-[0.28em] text-gold transition-colors group-hover:text-parchment">
+                SARKHAN GRIM
+              </span>
+              <span className="brand-lockup-tag">Mystical Cards</span>
             </span>
           </Link>
 
