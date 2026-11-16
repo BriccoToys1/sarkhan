@@ -41,6 +41,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 
   return (
     <html lang="ru" className={alice.variable}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
+        />
+      </head>
       <body className="alice-regular min-h-screen overflow-x-hidden bg-obsidian">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:bg-gold focus:px-4 focus:py-2 focus:text-obsidian">
           К содержимому
