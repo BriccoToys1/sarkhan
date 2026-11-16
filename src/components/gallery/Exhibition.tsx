@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { Search } from "lucide-react";
+import { SearchIcon } from "@/components/ui/SearchIcon";
 import clsx from "clsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ArtImage } from "@/components/ui/ArtImage";
@@ -58,7 +58,7 @@ function Exhibit({ art, index, onZoom }: { art: ArtworkDTO; index: number; onZoo
               </span>
             </span>
             <span className="absolute bottom-4 right-4 flex items-center gap-2 border border-gold/30 bg-obsidian/80 px-3 py-2 font-display text-[0.55rem] uppercase tracking-[0.24em] text-gold opacity-0 backdrop-blur transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-              <Search className="h-3.5 w-3.5" /> Лупа
+              <SearchIcon className="text-[0.875rem]" /> Лупа
             </span>
           </motion.button>
         </div>
@@ -90,7 +90,7 @@ function Exhibit({ art, index, onZoom }: { art: ArtworkDTO; index: number; onZoo
           <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-gold/10 pt-6">
             <AudioGuide id={art.id} url={art.audioUrl} transcript={art.audioTranscript} />
             <button type="button" onClick={onZoom} className="inline-flex items-center gap-2 font-display text-[0.6rem] uppercase tracking-[0.24em] text-gold hover:text-parchment">
-              <Search className="h-3.5 w-3.5" /> Рассмотреть штрихи
+              <SearchIcon className="text-[0.875rem]" /> Рассмотреть штрихи
             </button>
             {art.product &&
               (sold ? (

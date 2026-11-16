@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { Minus, Plus, RotateCcw, Search, X } from "lucide-react";
+import { Minus, Plus, RotateCcw, X } from "lucide-react";
+import { SearchIcon } from "@/components/ui/SearchIcon";
 import clsx from "clsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useModal } from "@/hooks/useModal";
@@ -113,7 +114,7 @@ function ZoomPanel({ src, title, caption, onClose }: { src: string; title: strin
             </div>
             <div className="flex items-center gap-1">
               <button type="button" onClick={() => setLoupe((l) => !l)} aria-pressed={loupe} className={clsx("hidden h-10 items-center gap-2 border px-3 font-display text-[0.6rem] uppercase tracking-[0.2em] transition-colors md:flex", loupe ? "border-gold text-gold" : "border-gold/20 text-ash hover:text-gold")}>
-                <Search className="h-4 w-4" /> Лупа
+                <SearchIcon className="text-[1rem]" /> Лупа
               </button>
               <button type="button" onClick={() => zoomAt(1 / 1.5, center().x, center().y)} className="flex h-10 w-10 items-center justify-center text-ash hover:text-gold" aria-label="Отдалить">
                 <Minus className="h-4 w-4" />

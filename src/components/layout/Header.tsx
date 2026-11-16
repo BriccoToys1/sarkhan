@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { SearchIcon } from "@/components/ui/SearchIcon";
 import clsx from "clsx";
 import { useCallback, useRef, useState, useSyncExternalStore } from "react";
 import { NAV } from "@/lib/site";
@@ -77,7 +78,7 @@ export function Header() {
 
           <div className="flex items-center gap-5">
             <button type="button" onClick={() => setSearch(true)} className="text-parchment transition-colors hover:text-gold" aria-label="Поиск">
-              <Search className="h-5 w-5" />
+              <SearchIcon className="text-[1.25rem]" />
             </button>
             <button type="button" onClick={openCart} className="relative text-parchment transition-colors hover:text-gold" aria-label={`Корзина, артефактов: ${hydrated ? count : 0}`}>
               <ChaliceIcon className="h-6 w-6" />

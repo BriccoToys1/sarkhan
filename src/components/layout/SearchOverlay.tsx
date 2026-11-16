@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { Search, Sparkles, X } from "lucide-react";
+import { Sparkles, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useModal } from "@/hooks/useModal";
 import { formatPrice } from "@/lib/format";
 import { ArtImage } from "@/components/ui/ArtImage";
+import { SearchIcon } from "@/components/ui/SearchIcon";
 
 type Result = { id: string; slug: string; title: string; price: number; image: string; type: string };
 
@@ -65,7 +66,7 @@ function SearchPanel({ onClose }: { onClose: () => void }) {
           }}
           className="relative border-b border-gold/30 focus-within:border-gold"
         >
-          <Search className="absolute left-0 top-1/2 h-5 w-5 -translate-y-1/2 text-gold/50" />
+          <SearchIcon className="absolute left-0 top-1/2 -translate-y-1/2 text-[1.25rem] text-gold/50" />
           <input
             data-autofocus
             value={q}

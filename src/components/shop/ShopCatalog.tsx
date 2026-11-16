@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { ChevronDown, Search, SlidersHorizontal, X } from "lucide-react";
+import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
+import { SearchIcon } from "@/components/ui/SearchIcon";
 import clsx from "clsx";
 import { useMemo, useState } from "react";
 import { useUrlSearch } from "@/hooks/useUrlSearch";
@@ -84,7 +85,7 @@ export function ShopCatalog({ products, collections }: { products: ProductDTO[];
       <div className="sticky top-20 z-30 -mx-6 border-y border-gold/15 bg-obsidian/90 px-6 py-4 backdrop-blur-md">
         <div className="flex flex-col gap-4 md:flex-row md:items-center">
           <label className="relative flex-1">
-            <Search className="pointer-events-none absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-gold/60" />
+            <SearchIcon className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-[1rem] text-gold/60" />
             <input
               type="search"
               value={filters.q}
